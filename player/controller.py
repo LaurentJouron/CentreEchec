@@ -11,18 +11,21 @@ class PlayerCreationController:
     def create(self):
         presentations.enter_information()
         player_data = self.view.get_player_data()
-        player = self.model(
-            first_name=player_data["first_name"],
-            last_name=player_data["last_name"],
-            birthday=player_data["birthday"],
-            code=player_data["code"],
-        )
+        player = self.model(**player_data)
         player.save()
-        self.view.register(f"{player_data['first_name']} {player_data['last_name']}")
+        presentations.register(f"{player_data['first_name']} {player_data['last_name']}")
         return player
 
 
 class PlayerModifyController:
+    ...
+
+
+class PlayerGetAllController:
+    ...
+
+
+class PlayerGetOneController:
     ...
 
 

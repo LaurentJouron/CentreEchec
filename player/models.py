@@ -6,14 +6,14 @@ class PlayerModel:
     db = TinyDB(f"data/chesscenter.json", indent=4)
     players_db = db.table("players")
 
-    def __init__(self, code: str, first_name: str, last_name: str, birthday: str = ""):
+    def __init__(self, player_code: str, first_name: str, last_name: str, birthday: str = ""):
+        self.player_code = player_code
         self.first_name = first_name
         self.last_name = last_name
         self.birthday = birthday
-        self.code = code
 
     def __repr__(self):
-        return f"\nName: {self.full_name} born: {self.birthday}\n"
+        return f"\nNational player code: {self.player_code} Name: {self.full_name} born: {self.birthday}\n"
 
     @property
     def full_name(self):
@@ -21,7 +21,7 @@ class PlayerModel:
 
     @property
     def db_instance(self) -> table.Document:
-        return PlayerModel.players_db.get((where("code") == self.code))
+        return PlayerModel.players_db.get((where("player_code") == self.player_code))
 
     def save(self, validate_data: bool = False) -> int:
         if validate_data:

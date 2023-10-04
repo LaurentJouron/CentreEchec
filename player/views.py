@@ -13,15 +13,15 @@ class PlayerView(BaseView):
         return player_code
 
     def get_player_data(self):
-        first_name = self.get_string("Please enter the player’s first name: ")
-        last_name = self.get_string("Enter the last name: ")
-        birthday = self.get_birthday()
-        code = self.generate_player_code(first_name, last_name, birthday)
+        first_name = self._get_string("Please enter the player’s first name: ").capitalize()
+        last_name = self._get_string("Enter the last name: ").capitalize()
+        birthday = self._get_date("Enter date of birth (ddmmaaaa): ")
+        player_code = self.generate_player_code(first_name, last_name, birthday)
         return {
+            "player_code": player_code,
             "first_name": first_name,
             "last_name": last_name,
             "birthday": birthday,
-            "code": code,
         }
 
     def get_birthday(self) -> str:

@@ -24,3 +24,17 @@ def input_error(var):
 
 def register(var):
     print(f" {var} is register. ")
+
+
+def select_number():
+    return input("Select the menu number : ")
+
+
+def value_error():
+    print("Value error.")
+
+
+def exiting_program():
+    information_decoration = " Exiting the program "
+    print(f"{information_decoration.center(106, '*')}")
+
