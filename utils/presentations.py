@@ -5,7 +5,7 @@ def welcome():
 
 def reception(var):
     reception = f" {var} "
-    print(f"\n {reception.center(106, ' ')}")
+    print(f"\n{reception.center(106, ' ')}")
 
 
 def instruction():
@@ -23,7 +23,7 @@ def input_error(var):
 
 
 def register(var):
-    print(f" {var} is register. ")
+    print(f"\n{var} is register. ")
 
 
 def select_number():
@@ -37,4 +37,3 @@ def value_error():
 def exiting_program():
     information_decoration = " Exiting the program "
     print(f"{information_decoration.center(106, '*')}")
-

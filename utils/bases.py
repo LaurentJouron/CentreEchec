@@ -31,21 +31,21 @@ class BaseView:
     date_validator = validate_date
 
     def _get_string(self, prompt, validator=None):
-        validator = validator or self.string_validator
+        validator = validator or type(self).string_validator
         while True:
             answer = input(prompt).strip()
             if validator(answer):
                 return answer
 
     def _get_int(self, prompt, validator=None):
-        validator = validator or self.integer_validator
+        validator = validator or type(self).integer_validator
         while True:
             answer = input(prompt).strip()
             if validator(answer):
                 return int(answer)
 
     def _get_date(self, prompt, validator=None):
-        validator = validator or self.date_validator
+        validator = validator or type(self).date_validator
         while True:
             answer = input(prompt).strip()
             if validator(answer):

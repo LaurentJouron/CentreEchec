@@ -3,17 +3,23 @@ import string
 
 
 class PlayerModel:
-    db = TinyDB(f"data/chesscenter.json", indent=4)
+    db = TinyDB("data/chesscenter.json", indent=4)
     players_db = db.table("players")
 
-    def __init__(self, player_code: str, first_name: str, last_name: str, birthday: str = ""):
+    def __init__(
+            self,
+            player_code: str,
+            first_name: str,
+            last_name: str,
+            birthday: str = ""
+        ):
         self.player_code = player_code
         self.first_name = first_name
         self.last_name = last_name
         self.birthday = birthday
 
     def __repr__(self):
-        return f"\nNational player code: {self.player_code} Name: {self.full_name} born: {self.birthday}\n"
+        return f"\n\tCode: {self.player_code}\t Name: {self.full_name}\t Born: {self.birthday}\n"
 
     @property
     def full_name(self):
@@ -21,8 +27,11 @@ class PlayerModel:
 
     @property
     def db_instance(self) -> table.Document:
-        return PlayerModel.players_db.get((where("player_code") == self.player_code))
-
+        return PlayerModel.players_db.get(
+            (where('first_name') == self.first_name)
+            & (where('last_name') == self.last_name)
+        )
+    
     def save(self, validate_data: bool = False) -> int:
         if validate_data:
             self._checks()
@@ -42,10 +51,10 @@ class PlayerModel:
     def exists(self):
         return bool(self.db_instance)
 
-    # def remove(self) -> list[int]:
-    #     if self.exists():
-    #         return PlayerModel.players_db.remove(doc_ids=[self.db_instance.doc_id])
-    #     return []
+    def remove(self) -> list[int]:
+        if self.exists():
+            return PlayerModel.players_db.remove(doc_ids=[self.db_instance.doc_id])
+        return []
 
     @classmethod
     def get_all(cls):

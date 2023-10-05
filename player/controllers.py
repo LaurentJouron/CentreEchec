@@ -36,4 +36,16 @@ class PlayerGetOneController:
 
 
 class PlayerDeleteController:
-    ...
+    def __init__(self):
+        self.view = PlayerView()
+        self.model = PlayerModel
+
+    def remove(self):
+        player_code = self.view.get_player_code()
+        first_name = self.view.get_first_name()
+        last_name = self.view.get_last_name()
+        return self.model(
+            player_code=player_code,
+            first_name=first_name,
+            last_name=last_name
+            )
