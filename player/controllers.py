@@ -19,10 +19,6 @@ class PlayerCreationController:
         return player
 
 
-class PlayerModifyController:
-    ...
-
-
 class PlayerGetAllController:
     def __init__(self):
         self.model = PlayerModel

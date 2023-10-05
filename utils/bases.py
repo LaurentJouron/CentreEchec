@@ -53,11 +53,12 @@ class BaseView:
 
 
 class BaseController:
+
     def __init__(self, **kwargs):
         self.kwargs = kwargs
 
     def action(self):
-        raise NotImplementedError
+        raise NotImplemented
 
     def run(self):
         return self.action()

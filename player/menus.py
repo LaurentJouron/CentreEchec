@@ -33,10 +33,34 @@ class PlayerManager:
                     player_delete = PlayerDeleteController()
                     player_delete.remove()
 
-                elif choice_menu =="4":
+                elif choice_menu == "4":
                     player_detail = PlayerGetOneController()
                     player_detail.get_by_code()
                 elif choice_menu == "5":
                     players = False
             else:
                 value_error()
+
+
+# from utils.bases import BaseController
+# from chesscenter.controllers import HomeController
+
+# class PlayerController(BaseController):
+#     def action(self):
+#         display_menu(PLAYER_MENU)
+#         choice_menu = select_number()
+#         if choice_menu in PLAYER_MENU:
+#             if choice_menu == "1":
+#                 return PlayerCreationController()
+
+#             elif choice_menu == "2":
+#                 return PlayerGetAllController()
+
+#             elif choice_menu == "3":
+#                 return PlayerDeleteController()
+
+#             elif choice_menu == "4":
+#                 return PlayerGetOneController()
+
+#             elif choice_menu == "5":
+#                 return HomeController()
