@@ -47,9 +47,9 @@ class PlayerModel:
     #         return PlayerModel.players_db.remove(doc_ids=[self.db_instance.doc_id])
     #     return []
 
-    # @staticmethod
-    # def get_all():
-    #     return [PlayerModel(**player) for player in PlayerModel.players_db.all()]
+    @classmethod
+    def get_all(cls):
+        return [cls(**player) for player in cls.players_db.all()]
 
     # @staticmethod
     # def get_one_player(first_name, last_name):

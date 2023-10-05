@@ -1,0 +1,16 @@
+{
+    "players": {
+        "1": {
+            "player_code": "LJ02061977",
+            "first_name": "laurent",
+            "last_name": "jouron",
+            "birthday": "02061976"
+        },
+        "2": {
+            "player_code": "TT310311",
+            "first_name": "Thierno",
+            "last_name": "thiam",
+            "birthday": "31031992"
+        }
+    }
+}
