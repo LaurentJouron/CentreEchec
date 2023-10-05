@@ -19,7 +19,8 @@ PLAYER_MENU: dict = {
     "1": "Add",
     "2": "Show",
     "3": "Remove",
-    "4": "Quit"
+    "4": "Details",
+    "5": "Quit"
     }
 
 TOURNAMENT_MENU: dict = {

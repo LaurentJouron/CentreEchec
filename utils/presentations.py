@@ -37,3 +37,15 @@ def value_error():
 def exiting_program():
     information_decoration = " Exiting the program "
     print(f"{information_decoration.center(106, '*')}")
+
+
+def success_message(var):
+    print(var)
+
+
+def error_message(var):
+    print(var)
+
+
+def display_player(var):
+    print(var)

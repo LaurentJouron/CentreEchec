@@ -32,7 +32,17 @@ class PlayerGetAllController:
 
 
 class PlayerGetOneController:
-    ...
+    def __init__(self):
+        self.view = PlayerView()
+        self.model = PlayerModel
+
+    def get_by_code(self):
+        player_code = self.view.get_player_code()
+        player = self.model.get_by_code(player_code)
+        if player:
+            presentations.display_player(player)
+        else:
+            presentations.error_message("Player not found.")
 
 
 class PlayerDeleteController:
@@ -42,10 +52,8 @@ class PlayerDeleteController:
 
     def remove(self):
         player_code = self.view.get_player_code()
-        first_name = self.view.get_first_name()
-        last_name = self.view.get_last_name()
-        return self.model(
-            player_code=player_code,
-            first_name=first_name,
-            last_name=last_name
-            )
+        removed_players = self.model.remove_by_code(player_code)
+        if removed_players:
+            presentations.success_message("Player removed successfully.")
+        else:
+            presentations.error_message("Player not found.")

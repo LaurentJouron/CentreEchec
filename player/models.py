@@ -11,8 +11,7 @@ class PlayerModel:
             player_code: str,
             first_name: str,
             last_name: str,
-            birthday: str = ""
-        ):
+            birthday: str = ""):
         self.player_code = player_code
         self.first_name = first_name
         self.last_name = last_name
@@ -31,7 +30,7 @@ class PlayerModel:
             (where('first_name') == self.first_name)
             & (where('last_name') == self.last_name)
         )
-    
+
     def save(self, validate_data: bool = False) -> int:
         if validate_data:
             self._checks()
@@ -51,17 +50,17 @@ class PlayerModel:
     def exists(self):
         return bool(self.db_instance)
 
-    def remove(self) -> list[int]:
-        if self.exists():
-            return PlayerModel.players_db.remove(doc_ids=[self.db_instance.doc_id])
-        return []
+    @classmethod
+    def remove_by_code(cls, player_code):
+        return cls.players_db.remove(where('player_code') == player_code)
 
     @classmethod
     def get_all(cls):
         return [cls(**player) for player in cls.players_db.all()]
 
-    # @staticmethod
-    # def get_one_player(first_name, last_name):
-    #     return PlayerModel.players_db.get(
-    #         (where("first_name") == first_name) & (where("last_name") == last_name)
-    #     )
+    @classmethod
+    def get_by_code(cls, player_code):
+        player_data = cls.players_db.search(where('player_code') == player_code)
+        if player_data:
+            return cls(**player_data[0])
+        return None

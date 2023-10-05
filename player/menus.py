@@ -4,7 +4,8 @@ from utils.constants import PLAYER_MENU
 from .controllers import (
     PlayerCreationController,
     PlayerGetAllController,
-    PlayerDeleteController
+    PlayerDeleteController,
+    PlayerGetOneController
     )
 
 
@@ -32,7 +33,10 @@ class PlayerManager:
                     player_delete = PlayerDeleteController()
                     player_delete.remove()
 
-                elif choice_menu == "4":
+                elif choice_menu =="4":
+                    player_detail = PlayerGetOneController()
+                    player_detail.get_by_code()
+                elif choice_menu == "5":
                     players = False
             else:
                 value_error()
