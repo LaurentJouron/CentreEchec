@@ -1,23 +1,25 @@
 from utils.presentations import (
-    welcome,
-    instruction,
     select_number,
     reception,
     value_error,
-    exiting_program
+    exiting_program,
 )
 from utils.functions import display_menu
 from utils.constants import CONFIRMATION_MENU, CHESS_MENU
 from player.menus import PlayerManager
 
+from .views import ChessCenterViews
+
+views = ChessCenterViews()
+
 
 def main():
     player_manager = PlayerManager()
-    welcome()
-    instruction()
+    views.welcome_game()
+    views.game_instruction()
     chesscenter = True
     while chesscenter:
-        display_menu(CHESS_MENU)
+        views.display_menu()
 
         choice_menu = select_number()
         if choice_menu in CHESS_MENU:

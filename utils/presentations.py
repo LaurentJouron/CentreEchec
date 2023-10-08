@@ -1,16 +1,6 @@
-def welcome():
-    welcome_application = " Welcome to the << CHESS-CENTER >> application "
-    print(f"\n{welcome_application.center(106, ' ')}")
-
-
 def reception(var):
     reception = f" {var} "
     print(f"\n{reception.center(106, ' ')}")
-
-
-def instruction():
-    instructions = " Please follow the instructions below "
-    print(f"\n{instructions.center(106, ' ')}")
 
 
 def enter_information():

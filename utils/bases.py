@@ -51,9 +51,20 @@ class BaseView:
             if validator(answer):
                 return answer
 
+    def _space_presentation(self, prompt):
+        print(f"\n{prompt.center(106, ' ')}")
+
+    def _star_presentation(self, prompt):
+        print(f"\n{prompt.center(106, '*')}")
+
+    def _display_menu(self, menu_dict):
+        menu_options = " | ".join(
+            [f" {keys}. {value} " for keys, value in menu_dict.items()]
+        )
+        return self._star_presentation(menu_options)
+
 
 class BaseController:
-
     def __init__(self, **kwargs):
         self.kwargs = kwargs
 

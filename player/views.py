@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from utils.constants import PLAYER_MENU
 from utils.bases import BaseView
 
 
@@ -12,30 +13,36 @@ class PlayerView(BaseView):
         return player_code
 
     def get_player_data(self):
-        first_name = self.get_first_name()
-        last_name = self.get_last_name()
+        first_name = self._get_string("Please enter the player’s first name: ")
+        last_name = self._get_string("Enter the last name: ")
         birthday = self._get_date("Enter date of birth (ddmmaaaa): ")
-        player_code = self.generate_player_code(
-            first_name,
-            last_name,
-            birthday
-            )
+        player_code = self.generate_player_code(first_name, last_name, birthday)
         birthday = datetime.strptime(birthday, "%d%m%Y").strftime("%A %d %B %Y")
         return {
             "player_code": player_code,
-            "first_name": first_name,
-            "last_name": last_name,
+            "first_name": first_name.capitalize(),
+            "last_name": last_name.capitalize(),
             "birthday": birthday,
         }
-
-    def get_first_name(self) -> str:
-        first_name = self._get_string("Please enter the player’s first name: ")
-        return first_name.capitalize()
-
-    def get_last_name(self) -> str:
-        last_name = self._get_string("Enter the last name: ")
-        return last_name.capitalize()
 
     def get_player_code(self):
         player_code = self._get_string("Please enter the player code: ")
         return player_code.upper()
+
+    def player_reception(self):
+        return self._space_presentation(" PLAYER RECEPTION ")
+
+    def player_creation(self):
+        return self._space_presentation(" PLAYER CREATION ")
+
+    def player_list_all(self):
+        return self._space_presentation(" ALL PLAYERS IN LIST ")
+
+    def player_remove(self):
+        return self._space_presentation(" REMOVE PLAYER ")
+
+    def player_register(var):
+        print(f"\nPlayer {var} is register. ")
+
+    def display_menu(self):
+        return self._display_menu(PLAYER_MENU)
