@@ -1,5 +1,4 @@
 from utils.bases import BaseView
-from utils.constants import CHESS_MENU
 
 
 class ChessCenterViews(BaseView):
@@ -11,5 +10,14 @@ class ChessCenterViews(BaseView):
     def game_instruction(self):
         return self._space_presentation("Please follow the instructions below")
 
-    def display_menu(self):
-        return self._display_menu(CHESS_MENU)
+    def display_menu(self, menu_dict):
+        return self._display_menu(menu_dict)
+
+    def exit_game(self):
+        return self._space_presentation(" EXIT CHESS CENTER ")
+
+    def exiting_game(self):
+        return self._star_presentation(" Exiting the program ")
+
+    def message_error(self):
+        return self._message_error()

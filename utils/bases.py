@@ -63,6 +63,15 @@ class BaseView:
         )
         return self._star_presentation(menu_options)
 
+    def _message_error(self, var=""):
+        if var != "":
+            print(f"\n{var} is value error.")
+        else:
+            print("Value error.")
+
+    def _message_success(self):
+        print("Successfully.")
+
 
 class BaseController:
     def __init__(self, **kwargs):

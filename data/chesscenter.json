@@ -29,6 +29,12 @@
             "first_name": "Virginie",
             "last_name": "Lombard",
             "birthday": "Friday 29 December 1978"
+        },
+        "6": {
+            "player_code": "TC07047",
+            "first_name": "Thierry",
+            "last_name": "Chappuis",
+            "birthday": "Thursday 07 April 1977"
         }
     }
 }

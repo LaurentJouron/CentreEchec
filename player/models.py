@@ -20,7 +20,7 @@ class Player:
         return f"\n\t{self.player_code}\t {self.full_name}\n"
 
     def __str__(self):
-        return f"{self.player_code}\n{self.full_name}\n{self.birthday}\n"
+        return f"\n{self.player_code}\n{self.full_name}\n{self.birthday}\n"
 
     @property
     def full_name(self):
@@ -61,7 +61,7 @@ class Player:
         return [cls(**player) for player in cls.data.all()]
 
     @classmethod
-    def get_by_code(cls, player_code):
+    def get_one_by_code(cls, player_code):
         player_data = cls.data.search(where("player_code") == player_code)
         if player_data:
             return cls(**player_data[0])

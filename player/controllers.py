@@ -1,6 +1,6 @@
 from utils import presentations
-from player.views import PlayerView
-from player.models import Player
+from .views import PlayerView
+from .models import Player
 
 
 class PlayerCreationController:
@@ -32,13 +32,13 @@ class PlayerGetOneController:
         self.view = PlayerView()
         self.model = Player
 
-    def get_by_code(self):
+    def get_one_by_code(self):
         player_code = self.view.get_player_code()
-        player = self.model.get_by_code(player_code)
+        player = self.model.get_one_by_code(player_code)
         if player:
             presentations.display_player(player)
         else:
-            presentations.error_message("Player not found.")
+            self.view.message_error(player_code)
 
 
 class PlayerDeleteController:
@@ -52,4 +52,4 @@ class PlayerDeleteController:
         if removed_players:
             presentations.success_message("Player removed successfully.")
         else:
-            presentations.error_message("Player not found.")
+            self.view.message_error(player_code)

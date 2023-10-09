@@ -1,6 +1,5 @@
 from datetime import datetime
 
-from utils.constants import PLAYER_MENU
 from utils.bases import BaseView
 
 
@@ -44,5 +43,11 @@ class PlayerView(BaseView):
     def player_register(var):
         print(f"\nPlayer {var} is register. ")
 
-    def display_menu(self):
-        return self._display_menu(PLAYER_MENU)
+    def display_menu(self, menu_dict):
+        return self._display_menu(menu_dict)
+
+    def message_error(self, var):
+        return self._message_error(var)
+
+    def message_success(self):
+        return self._message_success()
