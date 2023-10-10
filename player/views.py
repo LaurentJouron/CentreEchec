@@ -1,9 +1,13 @@
 from datetime import datetime
 
 from utils.bases import BaseView
+from utils.constants import PLAYER_MENU
 
 
 class PlayerView(BaseView):
+    def __init__(self):
+        self.player_menu = PLAYER_MENU
+
     def generate_player_code(self, first_name, last_name, birthday):
         initials = first_name[0].upper() + last_name[0].upper()
         day_month = datetime.strptime(birthday, "%d%m%Y").strftime("%d%m")[0:4]
@@ -28,7 +32,7 @@ class PlayerView(BaseView):
         player_code = self._get_string("Please enter the player code: ")
         return player_code.upper()
 
-    def player_reception(self):
+    def display_player_reception(self):
         return self._space_presentation(" PLAYER RECEPTION ")
 
     def player_creation(self):

@@ -1,6 +1,4 @@
 from utils.presentations import select_number
-from utils.constants import PLAYER_MENU
-from utils.bases import BaseView
 from .controllers import (
     PlayerCreationController,
     PlayerGetAllController,
@@ -9,29 +7,27 @@ from .controllers import (
 )
 from .views import PlayerView
 
-views = PlayerView()
 
-
-class PlayerMenu(BaseView):
+class PlayerMenu(PlayerView):
     def menu(self):
         players = True
         while players:
-            views.player_reception()
-            views.display_menu(PLAYER_MENU)
+            self.display_player_reception()
+            self.display_menu(self.player_menu)
             choice_menu = select_number()
-            if choice_menu in PLAYER_MENU:
+            if choice_menu in self.player_menu:
                 if choice_menu == "1":
-                    views.player_creation()
+                    self.player_creation()
                     player = PlayerCreationController()
                     player.create()
 
                 elif choice_menu == "2":
-                    views.player_list_all()
+                    self.player_list_all()
                     player = PlayerGetAllController()
                     player.get_all()
 
                 elif choice_menu == "3":
-                    views.player_remove()
+                    self.player_remove()
                     player = PlayerDeleteController()
                     player.remove()
 
@@ -42,7 +38,7 @@ class PlayerMenu(BaseView):
                 elif choice_menu == "5":
                     players = False
             else:
-                views.message_error()
+                self.message_error()
 
 
 # from utils.bases import BaseController
