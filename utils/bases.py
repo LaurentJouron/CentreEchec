@@ -1,4 +1,5 @@
 import re
+from utils.presentations import select_number
 
 
 def validate_charact(var):
@@ -57,12 +58,6 @@ class BaseView:
     def _star_presentation(self, prompt):
         print(f"\n{prompt.center(106, '*')}")
 
-    def _display_menu(self, menu_dict):
-        menu_options = " | ".join(
-            [f" {keys}. {value} " for keys, value in menu_dict.items()]
-        )
-        return self._star_presentation(menu_options)
-
     def _message_error(self, var=""):
         if var != "":
             print(f"\n{var} is value error.")
@@ -71,6 +66,21 @@ class BaseView:
 
     def _message_success(self):
         print("Successfully.")
+
+
+class MenuBaseView:
+    def _display_menu(self, menu_dict):
+        menu_options = " | ".join(
+            [f" {keys}. {value} " for keys, value in menu_dict.items()]
+        )
+        return self._star_presentation(menu_options)
+
+    def _response_menu(self, menu_dict):
+        while True:
+            choice = select_number()
+            if choice in menu_dict:
+                return choice
+            return self._message_error(choice)
 
 
 class BaseController:

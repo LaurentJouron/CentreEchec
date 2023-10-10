@@ -3,14 +3,14 @@ from .views import PlayerView
 from .models import Player
 
 
-class PlayerCreationController:
+class PlayerCreationController(PlayerView):
     def __init__(self):
-        self.view = PlayerView()
         self.model = Player
 
     def create(self):
+        self.display_creation()
         presentations.enter_information()
-        player_data = self.view.get_player_data()
+        player_data = self.get_player_data()
         player = self.model(**player_data)
         player.save()
         presentations.register(
@@ -19,20 +19,21 @@ class PlayerCreationController:
         return player
 
 
-class PlayerGetAllController:
+class PlayerGetAllController(PlayerView):
     def __init__(self):
         self.model = Player
 
     def get_all(self):
+        self.display_list_all()
         print(self.model.get_all())
 
 
-class PlayerGetOneController:
+class PlayerGetOneController(PlayerView):
     def __init__(self):
-        self.view = PlayerView()
         self.model = Player
 
     def get_one_by_code(self):
+        self.display_get_one()
         player_code = self.view.get_player_code()
         player = self.model.get_one_by_code(player_code)
         if player:
@@ -41,13 +42,13 @@ class PlayerGetOneController:
             self.view.message_error(player_code)
 
 
-class PlayerDeleteController:
+class PlayerRemoveController(PlayerView):
     def __init__(self):
-        self.view = PlayerView()
         self.model = Player
 
     def remove(self):
-        player_code = self.view.get_player_code()
+        self.display_remove()
+        player_code = self.get_player_code()
         removed_players = self.model.remove_by_code(player_code)
         if removed_players:
             presentations.success_message("Player removed successfully.")
