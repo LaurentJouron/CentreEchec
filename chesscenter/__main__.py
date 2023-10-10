@@ -1,4 +1,7 @@
 from chesscenter.controllers import HomeController
+from .views import HomeView
+
+views = HomeView()
 
 
 def main():
@@ -6,7 +9,7 @@ def main():
     while controller is not None:
         next_controller = controller.run()
         controller = next_controller
-    print("Good day and see you soon")
+    views.good_by()
 
 
 main()

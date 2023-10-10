@@ -34,12 +34,12 @@ class PlayerGetOneController(PlayerView):
 
     def get_one_by_code(self):
         self.display_get_one()
-        player_code = self.view.get_player_code()
+        player_code = self.get_player_code()
         player = self.model.get_one_by_code(player_code)
         if player:
             presentations.display_player(player)
         else:
-            self.view.message_error(player_code)
+            self.message_error(player_code)
 
 
 class PlayerRemoveController(PlayerView):
@@ -53,4 +53,4 @@ class PlayerRemoveController(PlayerView):
         if removed_players:
             presentations.success_message("Player removed successfully.")
         else:
-            self.view.message_error(player_code)
+            self.message_error(player_code)

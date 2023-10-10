@@ -1,12 +1,16 @@
 from datetime import datetime
 
 from utils.bases import BaseView, MenuBaseView
-from utils.constants import PLAYER_MENU
 
 
 class PlayerView(MenuBaseView, BaseView):
-    def __init__(self):
-        self.player_menu = PLAYER_MENU
+    PLAYER_MENU: dict = {
+        "1": "Add",
+        "2": "Show",
+        "3": "Remove",
+        "4": "Details",
+        "5": "Quit",
+    }
 
     def generate_player_code(self, first_name, last_name, birthday):
         initials = first_name[0].upper() + last_name[0].upper()
@@ -54,9 +58,3 @@ class PlayerView(MenuBaseView, BaseView):
 
     def confirm_register(var):
         print(f"\nPlayer {var} is register. ")
-
-    def message_error(self, var):
-        return self._message_error(var)
-
-    def message_success(self):
-        return self._message_success()

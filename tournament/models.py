@@ -8,23 +8,14 @@ class Tournament:
     db = TinyDB(DATABASE_NAME, indent=4)
     data = db.table("tournament")
 
-    def __init__(
-        self,
-        name: str,
-        place: str,
-        nbr_tour: int,
-        start_date: str,
-        end_date: str,
-        current_round: int,
-        comment: str,
-    ):
-        self.name = name
-        self.place = place
-        self.nbr_tour = nbr_tour
-        self.start_date = start_date
-        self.end_date = end_date
-        self.current_round = current_round
-        self.comment = comment
+    def __init__(self, **kwargs):
+        self.name = kwargs["name"]
+        self.place = kwargs["place"]
+        self.nbr_tour = kwargs["nbr_tour"]
+        self.start_date = kwargs["start_date"]
+        self.end_date = kwargs["end_date"]
+        self.current_round = kwargs["current_round"]
+        self.comment = kwargs["comment"]
 
     def __repr__(self):
         return f"Tournament({self.name}, {self.place}, {self.start_date})"

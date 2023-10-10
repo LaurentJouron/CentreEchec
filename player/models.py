@@ -8,13 +8,11 @@ class Player:
     db = TinyDB(DATABASE_NAME, indent=4)
     data = db.table("players")
 
-    def __init__(
-        self, player_code: str, first_name: str, last_name: str, birthday: str = ""
-    ):
-        self.player_code = player_code
-        self.first_name = first_name
-        self.last_name = last_name
-        self.birthday = birthday
+    def __init__(self, **kwargs):
+        self.player_code = kwargs["player_code"]
+        self.first_name = kwargs["first_name"]
+        self.last_name = kwargs["last_name"]
+        self.birthday = kwargs["birthday"]
 
     def __repr__(self):
         return f"\n\t{self.player_code}\t {self.full_name}\n"
