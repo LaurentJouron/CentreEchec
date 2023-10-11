@@ -68,7 +68,7 @@ class BaseView:
         print("Successfully.")
 
 
-class MenuBaseView:
+class MenuBaseView(BaseView):
     def _display_menu(self, menu_dict):
         menu_options = " | ".join(
             [f" {keys}. {value} " for keys, value in menu_dict.items()]
@@ -76,11 +76,10 @@ class MenuBaseView:
         return self._star_presentation(menu_options)
 
     def _response_menu(self, menu_dict):
-        while True:
-            choice = select_number()
-            if choice in menu_dict:
-                return choice
-            return self._message_error(choice)
+        choice = select_number()
+        if choice in menu_dict:
+            return choice
+        return self._message_error(choice)
 
 
 class BaseController:

@@ -1,8 +1,8 @@
-from utils.bases import BaseView, MenuBaseView
+from utils.bases import MenuBaseView
 
 
-class HomeView(MenuBaseView, BaseView):
-    CHESS_MENU: dict = {
+class HomeView(MenuBaseView):
+    home_menu: dict = {
         "1": "Player",
         "2": "Tournament",
         "3": "Match",
@@ -11,8 +11,6 @@ class HomeView(MenuBaseView, BaseView):
     }
 
     def display_menu(self, menu_dict):
-        self.welcome_game()
-        self.game_instruction()
         self._display_menu(menu_dict=menu_dict)
         return self._response_menu(menu_dict=menu_dict)
 

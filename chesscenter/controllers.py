@@ -7,27 +7,31 @@ from .views import HomeView
 
 class HomeController(BaseController, HomeView):
     def run(self):
+        self.welcome_game()
+        self.game_instruction()
         while True:
-            choice = self.display_menu(self.CHESS_MENU)
+            choice = self.display_menu(self.home_menu)
             if choice == "1":
-                player = PlayerController()
-                return player.run()
+                return PlayerController()
+
             elif choice == "2":
                 print("tournament menu")
+
             elif choice == "3":
                 print("tour menu")
+
             elif choice == "4":
                 print("match menu")
+
             elif choice == "5":
-                exit_controller = ExitController()
-                return exit_controller.run()
+                return ExitController()
 
 
-class ExitController(HomeView):
+class ExitController(BaseController, HomeView):
     def run(self):
+        self.exit_game()
         choice = self.display_menu(CONFIRMATION_MENU)
         if choice == "1":
             return None
         else:
-            home_controller = HomeController()
-            return home_controller.run()
+            return HomeController()

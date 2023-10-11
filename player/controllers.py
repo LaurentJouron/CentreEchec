@@ -7,7 +7,7 @@ class PlayerCreationController(PlayerView):
     def __init__(self):
         self.model = Player
 
-    def create(self):
+    def run(self):
         self.display_creation()
         presentations.enter_information()
         player_data = self.get_player_data()
@@ -23,7 +23,7 @@ class PlayerGetAllController(PlayerView):
     def __init__(self):
         self.model = Player
 
-    def get_all(self):
+    def run(self):
         self.display_list_all()
         print(self.model.get_all())
 
@@ -32,7 +32,7 @@ class PlayerGetOneController(PlayerView):
     def __init__(self):
         self.model = Player
 
-    def get_one_by_code(self):
+    def run(self):
         self.display_get_one()
         player_code = self.get_player_code()
         player = self.model.get_one_by_code(player_code)
@@ -46,7 +46,7 @@ class PlayerRemoveController(PlayerView):
     def __init__(self):
         self.model = Player
 
-    def remove(self):
+    def run(self):
         self.display_remove()
         player_code = self.get_player_code()
         removed_players = self.model.remove_by_code(player_code)

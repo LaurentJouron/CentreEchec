@@ -13,23 +13,19 @@ from .views import PlayerView
 class PlayerController(PlayerView, BaseController):
     def run(self):
         while True:
-            choice = self.display_menu(self.PLAYER_MENU)
+            choice = self.display_menu(self.player_menu)
             if choice == "1":
-                player = PlayerCreationController()
-                return player.create()
+                return PlayerCreationController()
 
             elif choice == "2":
-                player = PlayerGetAllController()
-                return player.get_all()
+                return PlayerGetAllController()
 
             elif choice == "3":
-                player = PlayerRemoveController()
-                return player.remove()
+                return PlayerRemoveController()
 
             elif choice == "4":
-                player = PlayerGetOneController()
-                return player.get_one_by_code()
+                return PlayerGetOneController()
 
-            # elif choice == "5":
-            # home = HomeController()
-            # return home.run()
+            elif choice == "5":
+                ...
+                # return HomeController()

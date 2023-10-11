@@ -1,10 +1,10 @@
 from datetime import datetime
 
-from utils.bases import BaseView, MenuBaseView
+from utils.bases import MenuBaseView
 
 
-class PlayerView(MenuBaseView, BaseView):
-    PLAYER_MENU: dict = {
+class PlayerView(MenuBaseView):
+    player_menu: dict = {
         "1": "Add",
         "2": "Show",
         "3": "Remove",
@@ -41,6 +41,10 @@ class PlayerView(MenuBaseView, BaseView):
         player_code = self._get_string("Please enter the player code: ")
         return player_code.upper()
 
+    def confirm_register(var):
+        print(f"\nPlayer {var} is register. ")
+
+    # Presentation
     def display_reception(self):
         return self._space_presentation(" PLAYER RECEPTION ")
 
@@ -55,6 +59,3 @@ class PlayerView(MenuBaseView, BaseView):
 
     def display_get_one(self):
         return self._space_presentation(" GET ONE PLAYER ")
-
-    def confirm_register(var):
-        print(f"\nPlayer {var} is register. ")
