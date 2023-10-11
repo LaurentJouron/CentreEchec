@@ -12,6 +12,15 @@ from .views import PlayerView
 
 class PlayerController(PlayerView, BaseController):
     def run(self):
+        """
+        Run the player controller.
+
+        Displays the player menu, collects user choice, and returns the
+        corresponding controller.
+
+        Returns:
+            BaseController: The selected controller based on the user's choice.
+        """
         while True:
             choice = self.display_menu(self.player_menu)
             if choice == "1":

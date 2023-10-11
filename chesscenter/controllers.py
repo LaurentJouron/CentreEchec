@@ -7,6 +7,13 @@ from .views import HomeView
 
 class HomeController(BaseController, HomeView):
     def run(self):
+        """
+        Main function to handle the home menu.
+
+        Displays the welcome and game instructions, then processes user
+        choices.
+        Returns the appropriate controller based on the user's choice.
+        """
         self.welcome_game()
         self.game_instruction()
         while True:
@@ -29,6 +36,12 @@ class HomeController(BaseController, HomeView):
 
 class ExitController(BaseController, HomeView):
     def run(self):
+        """
+        Main function to handle the exit menu.
+
+        Displays the exit message and asks for user confirmation.
+        Returns the appropriate controller based on the user's choice.
+        """
         self.exit_game()
         choice = self.display_menu(CONFIRMATION_MENU)
         if choice == "1":

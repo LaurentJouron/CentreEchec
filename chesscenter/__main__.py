@@ -4,7 +4,12 @@ from .views import HomeView
 views = HomeView()
 
 
-def main():
+def run_application():
+    """
+    Main function of the application.
+
+    Initializes the main controller and runs the application loop.
+    """
     controller = HomeController()
     while controller is not None:
         next_controller = controller.run()
@@ -12,4 +17,4 @@ def main():
     views.good_by()
 
 
-main()
+run_application()
