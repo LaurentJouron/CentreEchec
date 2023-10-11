@@ -1,7 +1,7 @@
 from chesscenter.controllers import HomeController
 from .views import HomeView
 
-views = HomeView()
+view = HomeView()
 
 
 def run_application():
@@ -14,7 +14,7 @@ def run_application():
     while controller is not None:
         next_controller = controller.run()
         controller = next_controller
-    views.good_by()
+    view.good_by()
 
 
 run_application()

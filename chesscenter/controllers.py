@@ -1,11 +1,13 @@
-from utils.bases import BaseController
+from utils.bases.controllers import BaseController
 from utils.constants import CONFIRMATION_MENU
-from player.menus import PlayerController
+from player.controllers import PlayerController
 
 from .views import HomeView
 
+view = HomeView()
 
-class HomeController(BaseController, HomeView):
+
+class HomeController(BaseController):
     def run(self):
         """
         Main function to handle the home menu.
@@ -14,10 +16,10 @@ class HomeController(BaseController, HomeView):
         choices.
         Returns the appropriate controller based on the user's choice.
         """
-        self.welcome_game()
-        self.game_instruction()
+        view.welcome_game()
+        view.game_instruction()
         while True:
-            choice = self.display_menu(self.home_menu)
+            choice = view.display_menu(view.home_menu)
             if choice == "1":
                 return PlayerController()
 
@@ -34,7 +36,7 @@ class HomeController(BaseController, HomeView):
                 return ExitController()
 
 
-class ExitController(BaseController, HomeView):
+class ExitController(BaseController):
     def run(self):
         """
         Main function to handle the exit menu.
@@ -42,8 +44,8 @@ class ExitController(BaseController, HomeView):
         Displays the exit message and asks for user confirmation.
         Returns the appropriate controller based on the user's choice.
         """
-        self.exit_game()
-        choice = self.display_menu(CONFIRMATION_MENU)
+        view.exit_game()
+        choice = view.display_menu(CONFIRMATION_MENU)
         if choice == "1":
             return None
         else:

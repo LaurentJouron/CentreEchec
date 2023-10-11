@@ -1,9 +1,42 @@
+from utils.bases.controllers import BaseController
 from utils import presentations
+from chesscenter import controllers as home
 from .views import PlayerView
 from .models import Player
 
+view = PlayerView()
 
-class PlayerCreationController(PlayerView):
+
+class PlayerController(BaseController):
+    def run(self):
+        """
+        Run the player controller.
+
+        Displays the player menu, collects user choice, and returns the
+        corresponding controller.
+
+        Returns:
+            BaseController: The selected controller based on the user's choice.
+        """
+        while True:
+            choice = view.display_menu(view.player_menu)
+            if choice == "1":
+                return PlayerCreationController()
+
+            elif choice == "2":
+                return PlayerGetAllController()
+
+            elif choice == "3":
+                return PlayerRemoveController()
+
+            elif choice == "4":
+                return PlayerGetOneController()
+
+            elif choice == "5":
+                return home.HomeController()
+
+
+class PlayerCreationController:
     def __init__(self):
         self.model = Player
 
@@ -15,20 +48,20 @@ class PlayerCreationController(PlayerView):
         the player data.
 
         Returns:
-            Player: The created player.
+            PlayerController: The controller for player-related actions.
         """
-        self.display_creation()
+        view.display_creation()
         presentations.enter_information()
-        player_data = self.get_player_data()
+        player_data = view.get_player_data()
         player = self.model(**player_data)
         player.save()
         presentations.register(
             f"{player_data['first_name']} {player_data['last_name']}"
         )
-        return player
+        return PlayerController()
 
 
-class PlayerGetAllController(PlayerView):
+class PlayerGetAllController:
     def __init__(self):
         self.model = Player
 
@@ -36,13 +69,18 @@ class PlayerGetAllController(PlayerView):
         """
         Run the player retrieval controller.
 
-        Displays the list of all players.
+        Displays a list of all players in the database and prints their
+        information.
+
+        Returns:
+            PlayerController: The controller for player-related actions.
         """
-        self.display_list_all()
+        view.display_list_all()
         print(self.model.get_all())
+        return PlayerController()
 
 
-class PlayerGetOneController(PlayerView):
+class PlayerGetOneController:
     def __init__(self):
         self.model = Player
 
@@ -50,19 +88,24 @@ class PlayerGetOneController(PlayerView):
         """
         Run the player retrieval controller.
 
-        Displays the get one view, collects player code, and displays
-        player information.
+        Displays the 'get one' view, prompts for a player code, retrieves
+        and displays player information if found. If the player is not found,
+        an error message is displayed.
+
+        Returns:
+            PlayerController: The controller for player-related actions.
         """
-        self.display_get_one()
-        player_code = self.get_player_code()
+        view.display_get_one()
+        player_code = view.get_player_code()
         player = self.model.get_one_by_code(player_code)
         if player:
             presentations.display_player(player)
         else:
-            self.message_error(player_code)
+            view.message_error(player_code)
+        return PlayerController()
 
 
-class PlayerRemoveController(PlayerView):
+class PlayerRemoveController:
     def __init__(self):
         self.model = Player
 
@@ -70,12 +113,18 @@ class PlayerRemoveController(PlayerView):
         """
         Run the player removal controller.
 
-        Displays the remove view, collects player code, and removes the player.
+        Displays the 'remove' view, prompts for a player code, and removes
+        the player from the database if found. If the player is not found,
+        an error message is displayed.
+
+        Returns:
+            PlayerController: The controller for player-related actions.
         """
-        self.display_remove()
-        player_code = self.get_player_code()
+        view.display_remove()
+        player_code = view.get_player_code()
         removed_players = self.model.remove_by_code(player_code)
         if removed_players:
             presentations.success_message("Player removed successfully.")
         else:
-            self.message_error(player_code)
+            view.message_error(player_code)
+        return PlayerController()

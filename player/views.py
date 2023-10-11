@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from utils.bases import MenuBaseView
+from utils.bases.menus import MenuBaseView
 
 
 class PlayerView(MenuBaseView):

@@ -1,4 +1,4 @@
-from utils.bases import MenuBaseView
+from utils.bases.menus import MenuBaseView
 
 
 class HomeView(MenuBaseView):

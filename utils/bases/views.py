@@ -1,5 +1,4 @@
 import re
-from utils.presentations import select_number
 
 
 def _get_string(var):
@@ -118,6 +117,20 @@ class BaseView:
             if validator(answer):
                 return answer
 
+    def _select_number(self):
+        """
+        Collect a number input from the user.
+
+        Returns:
+            str: The user's input as a string.
+        """
+        while True:
+            try:
+                answer = input("Select the menu number: ")
+                return answer
+            except ValueError:
+                self._message_error(answer)
+
     def _space_presentation(self, prompt):
         """
         Display a presentation message with spaces.
@@ -166,62 +179,3 @@ class BaseView:
             None
         """
         print("Successfully.")
-
-
-class MenuBaseView(BaseView):
-    def _display_menu(self, menu_dict):
-        """
-        Display a menu and return the user's choice.
-
-        Args:
-            menu_dict (dict): A dictionary of menu options.
-
-        Returns:
-            None
-        """
-        menu_options = " | ".join(
-            [f" {keys}. {value} " for keys, value in menu_dict.items()]
-        )
-        return self._star_presentation(menu_options)
-
-    def _response_menu(self, menu_dict):
-        """
-        Collect and validate the user's choice from the menu.
-
-        Args:
-            menu_dict (dict): A dictionary of menu options.
-
-        Returns:
-            str: The user's choice.
-        """
-        choice = select_number()
-        if choice in menu_dict:
-            return choice
-        return self._message_error(choice)
-
-
-class BaseController:
-    def __init__(self, **kwargs):
-        self.kwargs = kwargs
-
-    def action(self):
-        """
-        Define the action for the controller.
-
-        Raises:
-            NotImplementedError: This method should be implemented in
-            subclasses.
-
-        Returns:
-            None
-        """
-        raise NotImplementedError
-
-    def run(self):
-        """
-        Run the controller's action.
-
-        Returns:
-            None
-        """
-        return self.action()
