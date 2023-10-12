@@ -1,5 +1,4 @@
 from utils.bases.controllers import BaseController
-from utils import presentations
 from chesscenter import controllers as home
 from .views import PlayerView
 from .models import Player
@@ -51,13 +50,11 @@ class PlayerCreationController:
             PlayerController: The controller for player-related actions.
         """
         view.display_creation()
-        presentations.enter_information()
+        view.enter_information()
         player_data = view.get_player_data()
         player = self.model(**player_data)
         player.save()
-        presentations.register(
-            f"{player_data['first_name']} {player_data['last_name']}"
-        )
+        view.register(f"{player_data['first_name']} {player_data['last_name']}")
         return PlayerController()
 
 
@@ -99,7 +96,7 @@ class PlayerGetOneController:
         player_code = view.get_player_code()
         player = self.model.get_one_by_code(player_code)
         if player:
-            presentations.display_player(player)
+            view.display_player(player)
         else:
             view.message_error(player_code)
         return PlayerController()
@@ -124,7 +121,7 @@ class PlayerRemoveController:
         player_code = view.get_player_code()
         removed_players = self.model.remove_by_code(player_code)
         if removed_players:
-            presentations.success_message("Player removed successfully.")
+            view.success_message(player_code)
         else:
-            view.message_error(player_code)
+            view._message_error(player_code)
         return PlayerController()

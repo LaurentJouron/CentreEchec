@@ -1,7 +1,7 @@
 from utils.bases.views import BaseView
 
 
-class MenuBaseView(BaseView):
+class BaseMenu(BaseView):
     def _display_menu(self, menu_dict):
         """
         Display a menu and return the user's choice.

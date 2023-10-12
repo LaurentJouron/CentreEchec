@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from utils.bases.menus import MenuBaseView
+from utils.bases.menus import BaseMenu
 
 
-class PlayerView(MenuBaseView):
+class PlayerView(BaseMenu):
     player_menu: dict = {
         "1": "Add",
         "2": "Show",
@@ -80,9 +80,6 @@ class PlayerView(MenuBaseView):
 
         Args:
             var (str): The player's name.
-
-        Returns:
-            None
         """
         print(f"\nPlayer {var} is register. ")
 
@@ -90,44 +87,41 @@ class PlayerView(MenuBaseView):
     def display_reception(self):
         """
         Display a reception message.
-
-        Returns:
-            None
         """
-        return self._space_presentation(" PLAYER RECEPTION ")
+        self._space_presentation(" PLAYER RECEPTION ")
 
     def display_creation(self):
         """
         Display a message for player creation.
-
-        Returns:
-            None
         """
-        return self._space_presentation(" PLAYER CREATION ")
+        self._space_presentation(" PLAYER CREATION ")
 
     def display_list_all(self):
         """
         Display a message for listing all players.
-
-        Returns:
-            None
         """
-        return self._space_presentation(" ALL PLAYERS IN LIST ")
+        self._space_presentation(" ALL PLAYERS IN LIST ")
 
     def display_remove(self):
         """
         Display a message for removing a player.
-
-        Returns:
-            None
         """
-        return self._space_presentation(" REMOVE PLAYER ")
+        self._space_presentation(" REMOVE PLAYER ")
 
     def display_get_one(self):
         """
         Display a message for getting details of a player.
-
-        Returns:
-            None
         """
-        return self._space_presentation(" GET ONE PLAYER ")
+        self._space_presentation(" GET ONE PLAYER ")
+
+    def enter_information(self):
+        self._enter_information()
+
+    def register(self, var):
+        print(f"\n{var} is register. ")
+
+    def display_player(self, var):
+        print(var)
+
+    def success_message(self, var):
+        print(f"Player {var} removed successfully.")

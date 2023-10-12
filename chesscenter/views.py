@@ -1,7 +1,7 @@
-from utils.bases.menus import MenuBaseView
+from utils.bases.menus import BaseMenu
 
 
-class HomeView(MenuBaseView):
+class HomeView(BaseMenu):
     home_menu: dict = {
         "1": "Player",
         "2": "Tournament",
@@ -28,28 +28,28 @@ class HomeView(MenuBaseView):
         """
         Display a welcome message.
         """
-        return self._space_presentation(" Welcome on << CHESS-CENTER >> ")
+        self._space_presentation(" Welcome on << CHESS-CENTER >> ")
 
     def game_instruction(self):
         """
         Display game instructions.
         """
-        return self._space_presentation("Please follow the instructions below")
+        self._space_presentation("Please follow the instructions below")
 
     def exit_game(self):
         """
         Display an exit message.
         """
-        return self._space_presentation(" EXIT CHESS CENTER ")
+        self._space_presentation(" EXIT CHESS CENTER ")
 
     def good_by(self):
         """
         Display a farewell message.
         """
-        return self._space_presentation("Good day and see you soon...\n")
+        self._space_presentation("Good day and see you soon...\n")
 
     def exiting_game(self):
         """
         Display a message for exiting the program.
         """
-        return self._star_presentation(" Exiting the program ")
+        self._star_presentation(" Exiting the program ")

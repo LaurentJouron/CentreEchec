@@ -179,3 +179,6 @@ class BaseView:
             None
         """
         print("Successfully.")
+
+    def _enter_information(self):
+        return self._star_presentation(" Enter information ")

@@ -74,7 +74,8 @@ class Player:
             validate_data (bool): Whether to validate data before saving.
 
         Returns:
-            int: The ID of the inserted data, or -1 if the player already exists.
+            int: The ID of the inserted data, or -1 if the player
+            already exists.
         """
         if validate_data:
             self._checks()
