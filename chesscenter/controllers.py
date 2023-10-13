@@ -1,6 +1,7 @@
 from utils.bases.controllers import BaseController
 from utils.constants import CONFIRMATION_MENU
 from player.controllers import PlayerController
+from tournament.controllers import TournamentController
 
 from .views import HomeView
 
@@ -24,7 +25,7 @@ class HomeController(BaseController):
                 return PlayerController()
 
             elif choice == "2":
-                print("tournament menu")
+                return TournamentController()
 
             elif choice == "3":
                 print("tour menu")
