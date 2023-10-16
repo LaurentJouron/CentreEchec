@@ -1,9 +1,8 @@
 from utils.bases.menus import BaseMenu
-from datetime import datetime, timedelta, date
-from utils import constants
+from utils.bases.date import BaseDate
 
 
-class TournamentView(BaseMenu):
+class TournamentView(BaseMenu, BaseDate):
     tournament_menu: dict = {
         "1": "Creation",
         "2": "",
@@ -12,48 +11,32 @@ class TournamentView(BaseMenu):
         "5": "",
     }
 
-    def tournament_data(self):
+    def get_tournament_data(self):
         name = self._get_string("Enter the tournament name: ")
         place = self._get_string("Place of the tournament: ")
-        start = self.start_date()
-
-        print(name, place, start)
-
-    def start_date(self):
-        """
-        Generate the date the tournament begins.
-        Returns:
-            date: start
-        """
-        start = date.today()
-        start_date = start.strftime("%A %d %B %Y")
-        print(f"\nThe beginning of the tournament is the {start_date}")
-
-        choice = self.display_menu(constants.CONFIRMATION_MENU)
-        while True:
-            if choice == "1":
-                return start_date
-
-            elif choice == "2":
-                new_date = self._get_date("Enter start date (ddmmaaaa): ")
-                print(new_date, start)
-                # if int(new_date) < start:
-                #     print("It is not possible to schedule a date less than today.")
-                # else:
-                #     new_date = new_date.strftime("%A %d %B %Y")
-                # return new_date
-            else:
-                return self.start_date()
+        start = self._get_valid_date("Enter start date: ", future_date=True)
+        start_date = self.convert(start)
+        nbr_tour = self._get_string("Number of tour: ")
+        end = self._get_valid_date(
+            "Enter end date: ", start_date=start, future_date=False
+        )
+        end_date = self.convert(end)
+        current_round = self._get_string("current_round: ")
+        comment = self._get_string("Enter a comment if needed: ")
+        return {
+            "name": name.capitalize(),
+            "place": place.capitalize(),
+            "start_date": start_date,
+            "nbr_tour": nbr_tour,
+            "end_date": end_date,
+            "current_round": current_round,
+            "comment": comment,
+        }
 
     def display_menu(self, menu_dict):
         self.display_reception()
         self._display_menu(menu_dict=menu_dict)
         return self._response_menu(menu_dict=menu_dict)
-
-    def end_date(self):
-        self.display_number_of_day()
-        choice = self.select_choice()
-        self.number_of_the_day(constants.NUMBER_OF_DAY + 1)
 
     # Presentation
     def display_reception(self):

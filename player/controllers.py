@@ -98,7 +98,7 @@ class PlayerGetOneController:
         if player:
             view.display_player(player)
         else:
-            view.message_error(player_code)
+            view._message_error(player_code)
         return PlayerController()
 
 

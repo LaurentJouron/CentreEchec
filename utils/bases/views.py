@@ -1,4 +1,5 @@
 import re
+from utils.constants import SIZE_LINE
 
 
 def _get_string(var):
@@ -39,29 +40,9 @@ def _get_int(var):
         return False
 
 
-def _get_date(var):
-    """
-    Collect a date input from the user.
-
-    Args:
-        prompt (str): The input prompt.
-        validator (function, optional): A validation function.
-        Defaults to None.
-
-    Returns:
-        str: The user's input as a date.
-    """
-    pattern = r"^\d{8}$"
-    if re.match(pattern, var):
-        return True
-    else:
-        return False
-
-
 class BaseView:
     string_validator = _get_string
     integer_validator = _get_int
-    date_validator = _get_date
 
     def _get_string(self, prompt, validator=None):
         """
@@ -99,24 +80,6 @@ class BaseView:
             if validator(answer):
                 return int(answer)
 
-    def _get_date(self, prompt, validator=None):
-        """
-        Collect a date input from the user.
-
-        Args:
-            prompt (str): The input prompt.
-            validator (function, optional): A validation function.
-            Defaults to None.
-
-        Returns:
-            str: The user's input as a date.
-        """
-        validator = validator or type(self).date_validator
-        while True:
-            answer = input(prompt).strip()
-            if validator(answer):
-                return answer
-
     def _select_number(self):
         """
         Collect a number input from the user.
@@ -141,7 +104,7 @@ class BaseView:
         Returns:
             None
         """
-        print(f"\n{prompt.center(106, ' ')}")
+        print(f"\n{prompt.center(SIZE_LINE, ' ')}")
 
     def _star_presentation(self, prompt):
         """
@@ -153,7 +116,7 @@ class BaseView:
         Returns:
             None
         """
-        print(f"\n{prompt.center(106, '*')}")
+        print(f"\n{prompt.center(SIZE_LINE, '*')}")
 
     def _message_error(self, var=""):
         """

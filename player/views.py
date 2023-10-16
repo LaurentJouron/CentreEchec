@@ -1,9 +1,10 @@
 from datetime import datetime
 
 from utils.bases.menus import BaseMenu
+from utils.bases.date import BaseDate
 
 
-class PlayerView(BaseMenu):
+class PlayerView(BaseMenu, BaseDate):
     player_menu: dict = {
         "1": "Add",
         "2": "Show",
@@ -40,14 +41,14 @@ class PlayerView(BaseMenu):
         """
         first_name = self._get_string("Please enter the player’s first name: ")
         last_name = self._get_string("Enter the last name: ")
-        birthday = self._get_date("Enter date of birth (ddmmaaaa): ")
-        player_code = self.generate_player_code(first_name, last_name, birthday)
-        birthday = datetime.strptime(birthday, "%d%m%Y").strftime("%A %d %B %Y")
+        birth = self._get_valid_date("Enter the birth date: ")
+        player_code = self.generate_player_code(first_name, last_name, birth)
+        birth = self.convert(birth)
         return {
             "player_code": player_code,
             "first_name": first_name.capitalize(),
             "last_name": last_name.capitalize(),
-            "birthday": birthday,
+            "birthday": birth,
         }
 
     def display_menu(self, menu_dict):
@@ -74,14 +75,14 @@ class PlayerView(BaseMenu):
         player_code = self._get_string("Please enter the player code: ")
         return player_code.upper()
 
-    def confirm_register(var):
+    def confirm_register(self, var):
         """
         Display a confirmation message for player registration.
 
         Args:
             var (str): The player's name.
         """
-        print(f"\nPlayer {var} is register. ")
+        print(f"\nPlayer {var} is registered.")
 
     # Presentation
     def display_reception(self):

@@ -65,12 +65,12 @@ class Tournament:
             return cls(**tournament_data[0])
         return None
 
-    @classmethod
-    def generate_text_file(cls, file_name):
-        tournaments = cls.get_all()
-        with open(file_name, "w") as file:
-            for tournament in tournaments:
-                file.write(f"Name : {tournament.name}\n")
-                file.write(f"Place : {tournament.place}\n")
-                file.write(f"Dates : {tournament.start_date} - {tournament.end_date}\n")
-                file.write("\n")
+    # @classmethod
+    # def generate_text_file(cls, file_name):
+    #     tournaments = cls.get_all()
+    #     with open(file_name, "w") as file:
+    #         for tournament in tournaments:
+    #             file.write(f"Name : {tournament.name}\n")
+    #             file.write(f"Place : {tournament.place}\n")
+    #             file.write(f"Dates : {tournament.start_date} - {tournament.end_date}\n")
+    #             file.write("\n")

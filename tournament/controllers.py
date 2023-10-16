@@ -28,10 +28,12 @@ class TournamentController(BaseController):
 
 
 class TournamentCreationController:
-    # def __init__(self) -> None:
-    #     self.model = Tournament()
+    def __init__(self) -> None:
+        self.model = Tournament
 
     def run(self):
         view.display_creation()
-        view.tournament_data()
+        get_tournament_data = view.get_tournament_data()
+        tournament = self.model(**get_tournament_data)
+        tournament.save()
         return TournamentController()
