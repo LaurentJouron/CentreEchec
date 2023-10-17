@@ -145,3 +145,9 @@ class BaseView:
 
     def _enter_information(self):
         return self._star_presentation(" Enter information ")
+
+    def display_value_and_sentence(self, sentence, value):
+        print(f"\n{sentence}: {value}")
+
+    def display_made_your_choice(self):
+        print(self._space_presentation(" MADE YOUR CHOICE "))

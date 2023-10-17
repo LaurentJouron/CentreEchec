@@ -17,6 +17,7 @@ class PlayerController(BaseController):
         Returns:
             BaseController: The selected controller based on the user's choice.
         """
+        view.display_reception()
         while True:
             choice = view.display_menu(view.player_menu)
             if choice == "1":
@@ -54,7 +55,9 @@ class PlayerCreationController:
         player_data = view.get_player_data()
         player = self.model(**player_data)
         player.save()
-        view.register(f"{player_data['first_name']} {player_data['last_name']}")
+        view.display_player_register(
+            f"{player_data['first_name']} {player_data['last_name']}"
+        )
         return PlayerController()
 
 
@@ -92,7 +95,7 @@ class PlayerGetOneController:
         Returns:
             PlayerController: The controller for player-related actions.
         """
-        view.display_get_one()
+        view.display_details()
         player_code = view.get_player_code()
         player = self.model.get_one_by_code(player_code)
         if player:

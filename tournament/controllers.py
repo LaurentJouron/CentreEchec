@@ -9,6 +9,7 @@ view = TournamentView()
 
 class TournamentController(BaseController):
     def run(self):
+        view.display_reception()
         while True:
             choice = view.display_menu(view.tournament_menu)
             if choice == "1":

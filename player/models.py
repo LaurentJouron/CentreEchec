@@ -14,6 +14,7 @@ class Player:
         first_name (str): The first name of the player.
         last_name (str): The last name of the player.
         birthday (str): The birthday of the player.
+        gender (str): The gender of the player.
     """
 
     db = TinyDB(DATABASE_NAME, indent=4)
@@ -24,6 +25,7 @@ class Player:
         self.first_name = kwargs["first_name"]
         self.last_name = kwargs["last_name"]
         self.birthday = kwargs["birthday"]
+        self.gender = kwargs["gender"]
 
     def __repr__(self):
         """
@@ -41,7 +43,10 @@ class Player:
         Returns:
             str: A formatted string representing the player.
         """
-        return f"\n{self.player_code}\n{self.full_name}\n{self.birthday}\n"
+        return f"\n{self.player_code}\
+            \n{self.full_name}\
+            \n{self.birthday}\
+            \n{self.gender}\n"
 
     @property
     def full_name(self):

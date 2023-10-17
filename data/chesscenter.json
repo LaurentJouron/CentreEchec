@@ -4,43 +4,78 @@
             "player_code": "LJ02066",
             "first_name": "Laurent",
             "last_name": "Jouron",
-            "birthday": "Wednesday 02 June 1976"
+            "birthday": "Wednesday 02 June 1976",
+            "gender": "Male"
         },
         "2": {
             "player_code": "TT31032",
             "first_name": "Thierno",
             "last_name": "Thiam",
-            "birthday": "Tuesday 31 March 1992"
+            "birthday": "Tuesday 31 March 1992",
+            "gender": "Male"
         },
         "3": {
             "player_code": "LJ20050",
             "first_name": "Louis",
             "last_name": "Jouron",
-            "birthday": "Thursday 20 May 2010"
+            "birthday": "Thursday 20 May 2010",
+            "gender": "Male"
         },
         "4": {
             "player_code": "AJ17111",
             "first_name": "Antoine",
             "last_name": "Jouron",
-            "birthday": "Thursday 17 November 2011"
+            "birthday": "Thursday 17 November 2011",
+            "gender": "Male"
         },
         "5": {
             "player_code": "VL29128",
             "first_name": "Virginie",
             "last_name": "Lombard",
-            "birthday": "Friday 29 December 1978"
+            "birthday": "Friday 29 December 1978",
+            "gender": "Female"
         },
         "6": {
             "player_code": "TC07047",
             "first_name": "Thierry",
             "last_name": "Chappuis",
-            "birthday": "Thursday 07 April 1977"
+            "birthday": "Thursday 07 April 1977",
+            "gender": "Male"
         },
         "7": {
             "player_code": "SJ22034",
             "first_name": "Stephane",
             "last_name": "Jouron",
-            "birthday": "Friday 22 March 1974"
+            "birthday": "Friday 22 March 1974",
+            "gender": "Male"
+        },
+        "8": {
+            "player_code": "ML01112",
+            "first_name": "Monique",
+            "last_name": "Libert",
+            "birthday": "Tuesday 01 November 1932",
+            "gender": "Female"
+        },
+        "9": {
+            "player_code": "SW14067",
+            "first_name": "Severine",
+            "last_name": "Wilhelm",
+            "birthday": "Tuesday 14 June 1977",
+            "gender": "Female"
+        },
+        "10": {
+            "player_code": "SD07045",
+            "first_name": "Stephanie",
+            "last_name": "Duclos",
+            "birthday": "Monday 07 April 1975",
+            "gender": "Female"
+        },
+        "11": {
+            "player_code": "AB29053",
+            "first_name": "Anthony",
+            "last_name": "Bustos",
+            "birthday": "Tuesday 29 May 1973",
+            "gender": "Male"
         }
     }
 }
