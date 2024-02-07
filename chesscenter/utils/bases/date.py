@@ -1,4 +1,4 @@
-from utils.bases.views import BaseView
+from chesscenter.utils.bases.views import BaseView
 from datetime import datetime
 import re
 

@@ -1,15 +1,10 @@
-from chesscenter.controllers import HomeController
-from .views import HomeView
+from chesscenter.controllers.home_controllers import HomeController
+from chesscenter.views.home_views import HomeView
 
 view = HomeView()
 
 
 def run_application():
-    """
-    Main function of the application.
-
-    Initializes the main controller and runs the application loop.
-    """
     controller = HomeController()
     while controller is not None:
         next_controller = controller.run()

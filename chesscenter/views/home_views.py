@@ -1,4 +1,4 @@
-from utils.bases.menus import BaseMenu
+from chesscenter.utils.bases.menus import BaseMenu
 
 
 class HomeView(BaseMenu):

@@ -1,7 +1,7 @@
 from tinydb import TinyDB, where, table
 import string
 
-from utils.constants import DATABASE_NAME
+from chesscenter.utils.constants import DATABASE_NAME
 
 
 class Tournament:
@@ -18,7 +18,7 @@ class Tournament:
         self.comment = kwargs["comment"]
 
     def __repr__(self):
-        return f"Tournament({self.name}, {self.place}, {self.start_date})"
+        return f"\nName: {self.name} \nPlace: {self.place} \nStart: {self.start_date}\n"
 
     def __str__(self):
         return f"\n Name: {self.name}\t Place: {self.place}"
@@ -60,17 +60,6 @@ class Tournament:
 
     @classmethod
     def get_by_name(cls, name):
-        tournament_data = cls.data.search(where("name") == name)
-        if tournament_data:
+        if tournament_data := cls.data.search(where("name") == name):
             return cls(**tournament_data[0])
         return None
-
-    # @classmethod
-    # def generate_text_file(cls, file_name):
-    #     tournaments = cls.get_all()
-    #     with open(file_name, "w") as file:
-    #         for tournament in tournaments:
-    #             file.write(f"Name : {tournament.name}\n")
-    #             file.write(f"Place : {tournament.place}\n")
-    #             file.write(f"Dates : {tournament.start_date} - {tournament.end_date}\n")
-    #             file.write("\n")

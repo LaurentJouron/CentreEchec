@@ -1,5 +1,5 @@
 import re
-from utils.constants import SIZE_LINE
+from chesscenter.utils.constants import SIZE_LINE
 
 
 def _get_string(var):
@@ -15,10 +15,7 @@ def _get_string(var):
         str: The user's input.
     """
     pattern = r"^[a-zA-Z -àçéëêèïîôûù]+$"
-    if re.match(pattern, var):
-        return True
-    else:
-        return False
+    return bool(re.match(pattern, var))
 
 
 def _get_int(var):
@@ -34,10 +31,7 @@ def _get_int(var):
         int: The user's input as an integer.
     """
     pattern = r"^\d+$"
-    if re.match(pattern, var):
-        return True
-    else:
-        return False
+    return bool(re.match(pattern, var))
 
 
 class BaseView:
@@ -89,10 +83,9 @@ class BaseView:
         """
         while True:
             try:
-                answer = input("Select the menu number: ")
-                return answer
-            except ValueError:
-                self._message_error(answer)
+                return input("Select the menu number: ")
+            except ValueError as e:
+                self._message_error(e)
 
     def _space_presentation(self, prompt):
         """

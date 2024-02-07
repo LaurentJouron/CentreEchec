@@ -1,4 +1,4 @@
-from utils.bases.views import BaseView
+from chesscenter.utils.bases.views import BaseView
 
 
 class BaseMenu(BaseView):
@@ -28,6 +28,4 @@ class BaseMenu(BaseView):
             str: The user's choice.
         """
         choice = self._select_number()
-        if choice in menu_dict:
-            return choice
-        return self._message_error(choice)
+        return choice if choice in menu_dict else self._message_error(choice)
