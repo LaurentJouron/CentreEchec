@@ -18,7 +18,11 @@ class Tournament:
         self.comment = kwargs["comment"]
 
     def __repr__(self):
-        return f"\nName: {self.name} \nPlace: {self.place} \nStart: {self.start_date}\n"
+        return (
+            f"\nName: {self.name}\n"
+            f"Place: {self.place}\n"
+            f"Start: {self.start_date}\n"
+        )
 
     def __str__(self):
         return f"\n Name: {self.name}\t Place: {self.place}"
