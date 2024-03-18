@@ -11,7 +11,7 @@ class Tournament:
     def __init__(self, **kwargs):
         self.name = kwargs["name"]
         self.place = kwargs["place"]
-        self.nbr_tour = kwargs["nbr_tour"]
+        self.nbr_round = kwargs["nbr_round"]
         self.start_date = kwargs["start_date"]
         self.end_date = kwargs["end_date"]
         self.current_round = kwargs["current_round"]
@@ -29,11 +29,7 @@ class Tournament:
 
     @property
     def db_instance(self) -> table.Document:
-        return Tournament.data.get(
-            (where("name") == self.name)
-            & (where("place") == self.place)
-            & (where("start_date") == self.start_date)
-        )
+        return Tournament.data.get((where("name") == self.name))
 
     def save(self, validate_data: bool = False) -> int:
         if validate_data:

@@ -21,7 +21,7 @@ class TournamentView(BaseMenu, BaseDate):
         name = self.get_name()
         place = self._get_string("Place of the tournament: ")
         self.display_number_of_rounds()
-        nbr_tour = self.valid_int_value(DEFAULT_VALUE, f"{NUMBER_OF_ROUND}")
+        nbr_round = self.valid_int_value(DEFAULT_VALUE, f"{NUMBER_OF_ROUND}")
         start = self._get_valid_date(
             "Enter start date (ddmmyyyy): ", future_date=True
         )
@@ -36,7 +36,7 @@ class TournamentView(BaseMenu, BaseDate):
             "name": name,
             "place": place.capitalize(),
             "start_date": start_date,
-            "nbr_tour": int(nbr_tour),
+            "nbr_round": int(nbr_round),
             "end_date": end_date,
             "current_round": current_round,
             "comment": comment,
