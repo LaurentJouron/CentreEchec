@@ -1,4 +1,4 @@
-from chesscenter.utils.constants import DATABASE_NAME
+from ..utils.constants import DATABASE_NAME
 import string
 
 from tinydb import TinyDB, where, table
