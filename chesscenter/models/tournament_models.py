@@ -21,7 +21,11 @@ class Tournament:
         return (
             f"\nName: {self.name}\n"
             f"Place: {self.place}\n"
+            f"Number of round: {self.nbr_round}\n"
             f"Start: {self.start_date}\n"
+            f"End: {self.end_date}\n"
+            f"Current round: {self.current_round}\n"
+            f"Comment: {self.comment}\n"
         )
 
     def __str__(self):

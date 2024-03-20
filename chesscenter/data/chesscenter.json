@@ -93,7 +93,7 @@
         "1": {
             "name": "Ravier",
             "place": "Cannes",
-            "nbr_tour": 4,
+            "nbr_round": 4,
             "start_date": "Monday 20 May 2024",
             "end_date": "Saturday 25 May 2024",
             "current_round": "1",
