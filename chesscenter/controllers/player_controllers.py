@@ -7,6 +7,9 @@ view = PlayerView()
 
 
 class PlayerController(BaseController):
+    def __init__(self):
+        self.model = Player
+
     def run(self):
         view.display_reception()
         while True:
@@ -25,6 +28,27 @@ class PlayerController(BaseController):
 
             elif choice == "5":
                 return home.HomeController()
+
+    def serialize_player(self):
+        return {
+            "player_code": Player.player_code,
+            "first_name": Player.first_name,
+            "last_name": Player.last_name,
+            "birthday": Player.birthday,
+            "gender": Player.gender,
+            "rank": Player.rank,
+        }
+
+    def deserialize_player(self, serialized_player):
+        player_code = serialized_player["player_code"]
+        first_name = serialized_player["first_name"]
+        last_name = serialized_player["last_name"]
+        birthday = serialized_player["birthday"]
+        gender = serialized_player["gender"]
+        rank = serialized_player["rank"]
+        return Player(
+            player_code, first_name, last_name, birthday, gender, rank
+        )
 
 
 class PlayerCreationController:

@@ -9,7 +9,7 @@ class Player:
     db = TinyDB(DATABASE_NAME, indent=4)
     data = db.table("players")
 
-    def __init__(self, score=0, **kwargs):
+    def __init__(self, **kwargs):
         self.player_code = kwargs["player_code"]
         self.first_name = kwargs["first_name"]
         self.last_name = kwargs["last_name"]
