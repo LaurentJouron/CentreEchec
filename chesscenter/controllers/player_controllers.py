@@ -84,3 +84,15 @@ class PlayerRemoveController(PlayerController):
         else:
             view._message_error(player_code)
         return PlayerController()
+
+
+class PlayerToTournamentController(PlayerController):
+    def __init__(self):
+        self.model = Player
+
+    def run(self):
+        player_code = view.get_player_code()
+        while True:
+            if player := self.model.get_one_by_code(player_code):
+                return player
+            view._message_error(player_code)

@@ -3,6 +3,7 @@ from chesscenter.controllers import home_controllers as home
 
 from chesscenter.views.tournament_views import TournamentView
 from chesscenter.models.tournament_models import Tournament
+from .player_controllers import PlayerToTournamentController
 
 view = TournamentView()
 
@@ -25,6 +26,9 @@ class TournamentController(BaseController):
                 return TournamentGetOneController()
 
             elif choice == "5":
+                return TournamentManagerController()
+
+            elif choice == "6":
                 return home.HomeController()
 
 
@@ -79,3 +83,44 @@ class TournamentRemoveController(TournamentController):
         else:
             view._message_error(tournament_name)
         return TournamentController()
+
+
+class TournamentManagerController(BaseController):
+    def __init__(self):
+        self.selected_tournament = None
+
+    def run(self):
+        view.display_manager()
+        tournament = view.get_name()
+        while True:
+            choice = view.display_menu(view.tournament_manager)
+            if choice == "1":
+                return TournamentAddPlayerController(tournament)
+
+            elif choice == "2":
+                return ...
+
+            elif choice == "3":
+                return ...
+
+            elif choice == "4":
+                return ...
+
+            elif choice == "5":
+                return TournamentController()
+
+    def select_tournament(self, tournament):
+        self.selected_tournament = tournament
+
+
+class TournamentAddPlayerController(BaseController):
+    def __init__(self, tournament):
+        self.model = tournament
+
+    def run(self):
+        player_controller = PlayerToTournamentController()
+        new_player = player_controller.run()
+        self.model.append_player(player=new_player)
+
+        print("Player added successfully to the tournament!")
+        return TournamentManagerController()

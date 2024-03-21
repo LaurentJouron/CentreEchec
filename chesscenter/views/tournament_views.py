@@ -14,6 +14,14 @@ class TournamentView(BaseMenu, BaseDate):
         "2": "Read",
         "3": "Delete",
         "4": "Details",
+        "5": "Open",
+        "6": "Return",
+    }
+    tournament_manager: dict = {
+        "1": "Add player",
+        "2": "",
+        "3": "",
+        "4": "",
         "5": "Return",
     }
 
@@ -92,3 +100,6 @@ class TournamentView(BaseMenu, BaseDate):
 
     def display_tournament(self, var):
         print(var)
+
+    def display_manager(self):
+        self._space_presentation(" TOURNAMENT MANAGER ")
