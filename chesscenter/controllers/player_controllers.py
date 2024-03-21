@@ -18,7 +18,7 @@ class PlayerController(BaseController):
                 return PlayerCreationController()
 
             elif choice == "2":
-                return PlayerGetAllController()
+                return PlayerReadController()
 
             elif choice == "3":
                 return PlayerRemoveController()
@@ -29,30 +29,9 @@ class PlayerController(BaseController):
             elif choice == "5":
                 return home.HomeController()
 
-    def serialize_player(self):
-        return {
-            "player_code": Player.player_code,
-            "first_name": Player.first_name,
-            "last_name": Player.last_name,
-            "birthday": Player.birthday,
-            "gender": Player.gender,
-            "rank": Player.rank,
-        }
 
-    def deserialize_player(self, serialized_player):
-        player_code = serialized_player["player_code"]
-        first_name = serialized_player["first_name"]
-        last_name = serialized_player["last_name"]
-        birthday = serialized_player["birthday"]
-        gender = serialized_player["gender"]
-        rank = serialized_player["rank"]
-        return Player(
-            player_code, first_name, last_name, birthday, gender, rank
-        )
-
-
-class PlayerCreationController:
-    def __init__(self):
+class PlayerCreationController(PlayerController):
+    def __init__(self) -> None:
         self.model = Player
 
     def run(self):
@@ -67,8 +46,8 @@ class PlayerCreationController:
         return PlayerController()
 
 
-class PlayerGetAllController:
-    def __init__(self):
+class PlayerReadController(PlayerController):
+    def __init__(self) -> None:
         self.model = Player
 
     def run(self):
@@ -77,7 +56,7 @@ class PlayerGetAllController:
         return PlayerController()
 
 
-class PlayerGetOneController:
+class PlayerGetOneController(PlayerController):
     def __init__(self):
         self.model = Player
 
@@ -93,7 +72,7 @@ class PlayerGetOneController:
             return PlayerController()
 
 
-class PlayerRemoveController:
+class PlayerRemoveController(PlayerController):
     def __init__(self):
         self.model = Player
 

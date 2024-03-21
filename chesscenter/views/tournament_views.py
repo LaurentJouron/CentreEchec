@@ -13,7 +13,7 @@ class TournamentView(BaseMenu, BaseDate):
         "1": "Create",
         "2": "Read",
         "3": "Delete",
-        "4": "",
+        "4": "Details",
         "5": "Return",
     }
 
@@ -31,6 +31,7 @@ class TournamentView(BaseMenu, BaseDate):
         )
         end_date = self.convert(end)
         current_round = self._get_string("current_round: ")
+        current_round = int(current_round)
         comment = self._get_string("Enter a comment if needed: ")
         return {
             "name": name,
@@ -80,8 +81,14 @@ class TournamentView(BaseMenu, BaseDate):
     def display_remove(self):
         self._space_presentation(" REMOVE TOURNAMENT ")
 
+    def display_details(self):
+        self._space_presentation(" TOURNAMENT DETAILS ")
+
     def display_tournament_register(self, var):
         print(f"\nTournament {var} is registered.")
 
     def success_message(self, var):
         print(f"\nTournament {var} removed successfully.")
+
+    def display_tournament(self, var):
+        print(var)

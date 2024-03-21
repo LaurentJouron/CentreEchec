@@ -23,16 +23,16 @@ class PlayerView(BaseMenu, BaseDate):
     def get_data(self):
         first_name = self._get_string("Please enter the player’s first name: ")
         last_name = self._get_string("Enter the last name: ")
-        birth = self._get_valid_date("Enter the birth date: ")
+        birthday = self._get_valid_date("Enter the birth date (ddmmyyyy): ")
         gender = self.get_gender()
-        code = self.generate_code(first_name, last_name, birth)
-        birth = self.convert(birth)
+        code = self.generate_code(first_name, last_name, birthday)
+        birthday = self.convert(birthday)
         rank = self.get_rank()
         return {
             "player_code": code,
             "first_name": first_name.capitalize(),
             "last_name": last_name.capitalize(),
-            "birthday": birth,
+            "birthday": birthday,
             "gender": gender,
             "rank": rank,
         }

@@ -114,6 +114,49 @@ Pour lancer l'application depuis le terminal
 
 ___________
 
+* Page d'accueil
+  * 1 - Player
+    * 1 - Create
+      * ``player_code`` Se génère automatiquement avec les initials, le jour, mois et dernier chiffre de l'année de naissance.
+      * ``first_name``
+      * ``last_name``
+      * ``birthday`` (format de saisi - ddmmyyyy)
+      * ``gender``
+      * ``rank``
+    * 2 - Read
+      * Affiche l'intégralité des utilisateurs dans la base de donnée
+    * 3 - Delete
+      * ``player_code`` Pour supprimer un joueur saisissez son code.
+    * 4 - Details
+      * ``player_code`` Pour avoir le détail du joueur saisissez son code.
+    * 5 - Return home
+      * Retourne à la page d'accueil
+
+  * 2 - Tournament
+    * 1 - Create
+      * ``name``
+      * ``place``
+      * ``nbr_round``
+      * ``start_date`` (format de saisi - ddmmyyyy)
+      * ``end_date`` (format de saisi - ddmmyyyy)
+      * ``current_round``
+      * ``comment``
+
+    * 2 - Read
+      * Affiche l'intégralité des tournois dans la base de donnée
+    * 3 - Delete
+      * ``name`` Pour supprimer un tournois saisissez son nom.
+    * 4 - Details
+      * ``name`` Pour avoir le détail du tournois saisissez son nom.
+    * 5 - Return home
+
+  * 3 - Match
+
+  * 4 - Round
+___________
+
+
+
 <h1 align="center">Auteur et collaborateurs</h1>
 
 <table>

@@ -22,7 +22,7 @@ class TournamentController(BaseController):
                 return TournamentRemoveController()
 
             elif choice == "4":
-                return ...
+                return TournamentGetOneController()
 
             elif choice == "5":
                 return home.HomeController()
@@ -49,6 +49,22 @@ class TournamentReadController(TournamentController):
         view.display_list()
         print(self.model.get_all())
         return TournamentController()
+
+
+class TournamentGetOneController(TournamentController):
+    def __init__(self):
+        self.model = Tournament
+
+    def run(self):
+        view.display_details()
+        tournament_name = view.get_name()
+        while True:
+            if tournament := self.model.get_by_name(tournament_name):
+                view.display_tournament(tournament)
+            else:
+                view._message_error(tournament_name)
+                return TournamentGetOneController()
+            return TournamentController()
 
 
 class TournamentRemoveController(TournamentController):

@@ -1,8 +1,8 @@
-from ..utils.constants import DATABASE_NAME
-import string
-
 from tinydb import TinyDB, where, table
 from typing import List
+import string
+
+from ..utils.constants import DATABASE_NAME
 
 
 class Player:
@@ -10,22 +10,30 @@ class Player:
     data = db.table("players")
 
     def __init__(self, **kwargs):
-        self.player_code = kwargs["player_code"]
-        self.first_name = kwargs["first_name"]
-        self.last_name = kwargs["last_name"]
-        self.birthday = kwargs["birthday"]
-        self.gender = kwargs["gender"]
-        self.rank = kwargs["rank"]
+        self.player_code: str = kwargs["player_code"]
+        self.first_name: str = kwargs["first_name"]
+        self.last_name: str = kwargs["last_name"]
+        self.birthday: str = kwargs["birthday"]
+        self.gender: str = kwargs["gender"]
+        self.rank: int = kwargs["rank"]
 
     def __repr__(self):
-        return f"\n\t{self.player_code}\t {self.full_name}\n"
+        return (
+            f"\nPlayer code: {self.player_code}\n"
+            f"Player name: {self.full_name}\n"
+            f"Birthday: {self.birthday}\n"
+            f"Gender: {self.gender}\n"
+            f"Rank: {self.rank}\n"
+        )
 
     def __str__(self):
-        return f"\n{self.player_code}\
-            \n{self.full_name}\
-            \n{self.birthday}\
-            \n{self.gender}\
-            \n{self.rank}\n"
+        return (
+            f"\nPlayer code: {self.player_code}\n"
+            f"Player name: {self.full_name}\n"
+            f"Birthday: {self.birthday}\n"
+            f"Gender: {self.gender}\n"
+            f"Rank: {self.rank}\n"
+        )
 
     @property
     def full_name(self):
@@ -68,5 +76,26 @@ class Player:
             return cls(**player_data[0])
         return None
 
-    def update_ranking(self, new_rank):
+    def update_rank(self, new_rank):
         self.rank = new_rank
+
+    def serialize_player(self):
+        return {
+            "player_code": Player.player_code,
+            "first_name": Player.first_name,
+            "last_name": Player.last_name,
+            "birthday": Player.birthday,
+            "gender": Player.gender,
+            "rank": Player.rank,
+        }
+
+    def deserialize_player(self, serialized_player):
+        player_code = serialized_player["player_code"]
+        first_name = serialized_player["first_name"]
+        last_name = serialized_player["last_name"]
+        birthday = serialized_player["birthday"]
+        gender = serialized_player["gender"]
+        rank = serialized_player["rank"]
+        return Player(
+            player_code, first_name, last_name, birthday, gender, rank
+        )
