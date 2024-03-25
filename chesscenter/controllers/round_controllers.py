@@ -17,14 +17,5 @@ class RoundController(BaseController):
             if choice == "1":
                 return ...
 
-            elif choice == "2":
-                return ...
-
-            elif choice == "3":
-                return ...
-
-            elif choice == "4":
-                return ...
-
             elif choice == "5":
                 return home.HomeController()

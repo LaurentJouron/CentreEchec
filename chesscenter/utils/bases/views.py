@@ -97,7 +97,7 @@ class BaseView:
         Returns:
             None
         """
-        print(f"\n{prompt.center(SIZE_LINE, ' ')}")
+        print(f"\n{prompt.center(SIZE_LINE, ' ')}".upper())
 
     def _star_presentation(self, prompt):
         """

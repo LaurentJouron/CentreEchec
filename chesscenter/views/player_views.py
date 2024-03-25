@@ -79,14 +79,17 @@ class PlayerView(BaseMenu, BaseDate):
     def display_details(self):
         self._space_presentation(" PLAYER DETAILS ")
 
+    def display_code(self):
+        self._space_presentation(" PLAYER CODE ")
+
     def enter_information(self):
         self._enter_information()
 
     def display_player_register(self, var):
         print(f"\nPlayer {var} is registered.")
 
-    def display_player(self, var):
-        print(var)
+    def display_player(self, player):
+        print(player)
 
-    def success_message(self, var):
-        print(f"\nPlayer {var} removed successfully.")
+    def success_message(self, player):
+        print(f"\nPlayer {player} removed successfully.")

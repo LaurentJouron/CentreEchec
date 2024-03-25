@@ -102,12 +102,151 @@
             "name": "Ravier",
             "place": "Cannes",
             "nbr_round": 4,
-            "start_date": "Monday 20 May 2024",
-            "end_date": "Saturday 25 May 2024",
+            "start_date": "Monday 25 March 2024",
+            "end_date": "Monday 25 March 2024",
             "current_round": 1,
-            "comment": "First tournament",
-            "players": [],
-            "rounds": []
+            "comment": "rien",
+            "players": [
+                {
+                    "player_code": "LJ02066",
+                    "first_name": "Laurent",
+                    "last_name": "Jouron",
+                    "birthday": "Wednesday 02 June 1976",
+                    "gender": "Male",
+                    "rank": 0
+                },
+                {
+                    "player_code": "TT31032",
+                    "first_name": "Thierno",
+                    "last_name": "Thiam",
+                    "birthday": "Tuesday 31 March 1992",
+                    "gender": "Male",
+                    "rank": 0
+                },
+                {
+                    "player_code": "MK01080",
+                    "first_name": "Maxime",
+                    "last_name": "Keltsma",
+                    "birthday": "Friday 01 August 1980",
+                    "gender": "Male",
+                    "rank": 0
+                },
+                {
+                    "player_code": "AB29053",
+                    "first_name": "Anthony",
+                    "last_name": "Bustos",
+                    "birthday": "Tuesday 29 May 1973",
+                    "gender": "Male",
+                    "rank": 0
+                },
+                {
+                    "player_code": "SD07045",
+                    "first_name": "Stephanie",
+                    "last_name": "Duclos",
+                    "birthday": "Monday 07 April 1975",
+                    "gender": "Female",
+                    "rank": 0
+                },
+                {
+                    "player_code": "SW14067",
+                    "first_name": "Severine",
+                    "last_name": "Wilhelm",
+                    "birthday": "Tuesday 14 June 1977",
+                    "gender": "Female",
+                    "rank": 0
+                },
+                {
+                    "player_code": "ML01112",
+                    "first_name": "Monique",
+                    "last_name": "Libert",
+                    "birthday": "Tuesday 01 November 1932",
+                    "gender": "Female",
+                    "rank": 0
+                },
+                {
+                    "player_code": "SJ22034",
+                    "first_name": "Stephane",
+                    "last_name": "Jouron",
+                    "birthday": "Friday 22 March 1974",
+                    "gender": "Male",
+                    "rank": 0
+                }
+            ]
+        },
+        "2": {
+            "name": "Test",
+            "place": "Test",
+            "nbr_round": 4,
+            "start_date": "Tuesday 26 March 2024",
+            "end_date": "Tuesday 26 March 2024",
+            "current_round": 1,
+            "comment": "rien",
+            "players": [
+                {
+                    "player_code": "LJ02066",
+                    "first_name": "Laurent",
+                    "last_name": "Jouron",
+                    "birthday": "Wednesday 02 June 1976",
+                    "gender": "Male",
+                    "rank": 0
+                },
+                {
+                    "player_code": "TT31032",
+                    "first_name": "Thierno",
+                    "last_name": "Thiam",
+                    "birthday": "Tuesday 31 March 1992",
+                    "gender": "Male",
+                    "rank": 0
+                },
+                {
+                    "player_code": "MK01080",
+                    "first_name": "Maxime",
+                    "last_name": "Keltsma",
+                    "birthday": "Friday 01 August 1980",
+                    "gender": "Male",
+                    "rank": 0
+                },
+                {
+                    "player_code": "AB29053",
+                    "first_name": "Anthony",
+                    "last_name": "Bustos",
+                    "birthday": "Tuesday 29 May 1973",
+                    "gender": "Male",
+                    "rank": 0
+                },
+                {
+                    "player_code": "SD07045",
+                    "first_name": "Stephanie",
+                    "last_name": "Duclos",
+                    "birthday": "Monday 07 April 1975",
+                    "gender": "Female",
+                    "rank": 0
+                },
+                {
+                    "player_code": "SW14067",
+                    "first_name": "Severine",
+                    "last_name": "Wilhelm",
+                    "birthday": "Tuesday 14 June 1977",
+                    "gender": "Female",
+                    "rank": 0
+                },
+                {
+                    "player_code": "ML01112",
+                    "first_name": "Monique",
+                    "last_name": "Libert",
+                    "birthday": "Tuesday 01 November 1932",
+                    "gender": "Female",
+                    "rank": 0
+                },
+                {
+                    "player_code": "SJ22034",
+                    "first_name": "Stephane",
+                    "last_name": "Jouron",
+                    "birthday": "Friday 22 March 1974",
+                    "gender": "Male",
+                    "rank": 0
+                }
+            ]
         }
     }
 }

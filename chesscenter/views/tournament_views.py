@@ -14,22 +14,12 @@ class TournamentView(BaseMenu, BaseDate):
         "2": "Read",
         "3": "Delete",
         "4": "Details",
-        "5": "Open",
-        "6": "Return",
-    }
-    tournament_manager: dict = {
-        "1": "Add player",
-        "2": "",
-        "3": "",
-        "4": "",
         "5": "Return",
     }
 
     def tournament_data(self):
         name = self.get_name()
         place = self._get_string("Place of the tournament: ")
-        self.display_number_of_rounds()
-        nbr_round = self.valid_int_value(DEFAULT_VALUE, f"{NUMBER_OF_ROUND}")
         start = self._get_valid_date(
             "Enter start date (ddmmyyyy): ", future_date=True
         )
@@ -38,15 +28,16 @@ class TournamentView(BaseMenu, BaseDate):
             "Enter end date (ddmmyyyy): ", start_date=start, future_date=False
         )
         end_date = self.convert(end)
-        current_round = self._get_string("current_round: ")
-        current_round = int(current_round)
+        self.display_number_of_rounds()
+        nbr_round = self.valid_int_value(DEFAULT_VALUE, f"{NUMBER_OF_ROUND}")
+        current_round = self._get_int("current round: ")
         comment = self._get_string("Enter a comment if needed: ")
         return {
             "name": name,
             "place": place.capitalize(),
             "start_date": start_date,
-            "nbr_round": int(nbr_round),
             "end_date": end_date,
+            "nbr_round": int(nbr_round),
             "current_round": current_round,
             "comment": comment,
         }
@@ -100,6 +91,3 @@ class TournamentView(BaseMenu, BaseDate):
 
     def display_tournament(self, var):
         print(var)
-
-    def display_manager(self):
-        self._space_presentation(" TOURNAMENT MANAGER ")

@@ -2,6 +2,7 @@ from chesscenter.views.player_views import PlayerView
 from chesscenter.models.player_models import Player
 from chesscenter.controllers import home_controllers as home
 from chesscenter.utils.bases.controllers import BaseController
+from chesscenter.utils.constants import NUMBER_OF_PLAYERS
 
 view = PlayerView()
 
@@ -64,10 +65,10 @@ class PlayerGetOneController(PlayerController):
         view.display_details()
         player_code = view.get_player_code()
         while True:
-            if player := self.model.get_one_by_code(player_code):
-                view.display_player(player)
+            if player := self.model.get_one_by_code(player_code=player_code):
+                view.display_player(player=player)
             else:
-                view._message_error(player_code)
+                view._message_error(var=player_code)
                 return PlayerGetOneController()
             return PlayerController()
 
@@ -79,20 +80,32 @@ class PlayerRemoveController(PlayerController):
     def run(self):
         view.display_remove()
         player_code = view.get_player_code()
-        if self.model.remove_by_code(player_code):
-            view.success_message(player_code)
+        if self.model.remove_by_code(player_code=player_code):
+            view.success_message(player=player_code)
         else:
             view._message_error(player_code)
         return PlayerController()
 
 
-class PlayerToTournamentController(PlayerController):
-    def __init__(self):
+class PlayerTournament:
+    def __init__(self) -> None:
         self.model = Player
 
-    def run(self):
-        player_code = view.get_player_code()
-        while True:
-            if player := self.model.get_one_by_code(player_code):
-                return player
-            view._message_error(player_code)
+    def player_for_tournament(self):
+        players = []
+        while len(players) < NUMBER_OF_PLAYERS:
+            view.display_code()
+            player_code = view.get_player_code()
+            if player := self.model.get_one_by_code(player_code=player_code):
+                new_player = {
+                    "player_code": player.player_code,
+                    "first_name": player.first_name,
+                    "last_name": player.last_name,
+                    "birthday": player.birthday,
+                    "gender": player.gender,
+                    "rank": 0,
+                }
+                players.append(new_player)
+                print(f"\nThere are {len(players)} players in the list.")
+            print("The player list is complete.")
+        return players

@@ -10,17 +10,9 @@
   </a>
 </p>
 
-<p align="center">
-    <img align="left"
-      width="50px" 
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToscdusMNjQbffwasgiLuCsbCNZisJRE95Fg&usqp=CAU" />
-</p>
-
-### ``--- Explication en français ---``
-
-
 ___________
-Cet exercice a été réalisé dans le cadre d'une formation dont voici le sujet :
+
+    Cet exercice a été réalisé dans le cadre d'une formation dont voici le sujet:
 ___
 
 <h1 align="center">Centre échecs</h1>
@@ -36,50 +28,6 @@ ___
 * En plus de cela, il y aura des vues pour afficher les classements, les appariements et d'autres statistiques.
 
 Comme ils savent qu'il s'agit de votre premier projet client, ils veulent avoir l'assurance que votre code sera propre et maintenable. En tant que passionné de Python, vous savez immédiatement qu'ils veulent vous voir suivre les directives de style de code – la PEP 8 en particulier.
-
-___________
-
-<h1 align="center">But de l'application</h1>
-
-___________
-
-<h1 align="center">Langage</h1>
-
-___
-
-<p align="center">L'intégralité de l'application a été développer en Python.</p>
-
-<table>
-  <tr>
-    <td align="center">
-      <a href=https://www.python.org/">
-        <img width="200px"
-          src="https://www.python.org/static/img/python-logo.png" /><br />
-        <sub><b>Téléchargez Python</b></sub></a><br />
-      <a href="https://www.python.org/" title="Téléchargez Python" ></a> 
-    </td>
-  </tr>
-</table>
-
-___________
-
-<h1 align="center">EDI</h1>
-
-___
-
-<p align="left">L'EDI utilisé pour la programmation est Visual Studio Code.
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://visualstudio.microsoft.com/fr/">
-        <img width="130px"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-H3CcAG7w2nXSnlqldVWR-ER4mvFfLgqYxA&usqp=CAU" /><br />
-        <sub><b>Visuable Studio Code</b></sub></a><br />
-      <a href="https://visualstudio.microsoft.com/fr/" title="Visuable Studio Code" ></a>
-    </td>
-  </tr>
-</table>
 
 ___________
 

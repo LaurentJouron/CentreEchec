@@ -3,7 +3,7 @@ from chesscenter.controllers import home_controllers as home
 
 from chesscenter.views.tournament_views import TournamentView
 from chesscenter.models.tournament_models import Tournament
-from .player_controllers import PlayerToTournamentController
+from chesscenter.controllers.player_controllers import PlayerTournament
 
 view = TournamentView()
 
@@ -26,20 +26,27 @@ class TournamentController(BaseController):
                 return TournamentGetOneController()
 
             elif choice == "5":
-                return TournamentManagerController()
-
-            elif choice == "6":
                 return home.HomeController()
 
 
 class TournamentCreationController(TournamentController):
     def __init__(self) -> None:
         self.model = Tournament
+        self.player = PlayerTournament()
 
     def run(self):
         view.display_creation()
         tournament_data = view.tournament_data()
-        tournament = self.model(**tournament_data)
+        tournament = self.model(
+            name=tournament_data["name"],
+            place=tournament_data["place"],
+            start_date=tournament_data["start_date"],
+            end_date=tournament_data["end_date"],
+            nbr_round=tournament_data["nbr_round"],
+            current_round=tournament_data["current_round"],
+            comment=tournament_data["comment"],
+            players=self.player.player_for_tournament(),
+        )
         tournament.save()
         view.display_tournament_register(tournament_data["name"])
         return TournamentController()
@@ -85,42 +92,9 @@ class TournamentRemoveController(TournamentController):
         return TournamentController()
 
 
-class TournamentManagerController(BaseController):
-    def __init__(self):
-        self.selected_tournament = None
+class TournamentMatch:
+    def __init__(self) -> None:
+        self.model = Tournament
 
-    def run(self):
-        view.display_manager()
-        tournament = view.get_name()
-        while True:
-            choice = view.display_menu(view.tournament_manager)
-            if choice == "1":
-                return TournamentAddPlayerController(tournament)
-
-            elif choice == "2":
-                return ...
-
-            elif choice == "3":
-                return ...
-
-            elif choice == "4":
-                return ...
-
-            elif choice == "5":
-                return TournamentController()
-
-    def select_tournament(self, tournament):
-        self.selected_tournament = tournament
-
-
-class TournamentAddPlayerController(BaseController):
-    def __init__(self, tournament):
-        self.model = tournament
-
-    def run(self):
-        player_controller = PlayerToTournamentController()
-        new_player = player_controller.run()
-        self.model.append_player(player=new_player)
-
-        print("Player added successfully to the tournament!")
-        return TournamentManagerController()
+    def match_list(self):
+        return ...
