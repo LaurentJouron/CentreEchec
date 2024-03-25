@@ -3,6 +3,7 @@ from chesscenter.utils.constants import CONFIRMATION_MENU
 from chesscenter.utils.bases.controllers import BaseController
 from chesscenter.controllers.player_controllers import PlayerController
 from chesscenter.controllers.tournament_controllers import TournamentController
+from chesscenter.controllers.match_controllers import MatchController
 
 view = HomeView()
 
@@ -20,7 +21,7 @@ class HomeController(BaseController):
                 return TournamentController()
 
             elif choice == "3":
-                print("tour menu")
+                return MatchController()
 
             elif choice == "4":
                 print("match menu")

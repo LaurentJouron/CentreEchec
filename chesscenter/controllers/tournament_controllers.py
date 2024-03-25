@@ -5,6 +5,7 @@ from chesscenter.views.tournament_views import TournamentView
 from chesscenter.models.tournament_models import Tournament
 from chesscenter.controllers.player_controllers import PlayerTournament
 
+
 view = TournamentView()
 
 
@@ -96,5 +97,8 @@ class TournamentMatch:
     def __init__(self) -> None:
         self.model = Tournament
 
-    def match_list(self):
-        return ...
+    def get_tournament_players(self, tournament_name):
+        if tournament := self.model.get_by_name(tournament_name):
+            return tournament
+        view._message_error(f"Tournament '{tournament_name}' not found")
+        return None

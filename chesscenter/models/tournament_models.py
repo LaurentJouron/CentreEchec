@@ -80,18 +80,6 @@ class Tournament:
             return cls(**tournament_data[0])
         return None
 
-    def serialize_tournament(self):
-        return {
-            "name": Tournament.name,
-            "place": Tournament.place,
-            "nbr_round": Tournament.nbr_round,
-            "start_date": Tournament.start_date,
-            "end_date": Tournament.end_date,
-            "current_round": Tournament.current_round,
-            "comment": Tournament.comment,
-            "players": Tournament.players,
-        }
-
     def deserialize_tournament(self, serialized_tournament):
         name = serialized_tournament["name"]
         place = serialized_tournament["place"]
