@@ -1,18 +1,17 @@
+from ..utils.constants import DATABASE_NAME
+from .match_models import Match
 from datetime import datetime
 from tinydb import TinyDB
-from chesscenter.utils.constants import NUMBER_OF_ROUND
-from chesscenter.utils.constants import DATABASE_NAME
-from .match_models import Match
 
 
 class Round:
     db = TinyDB(DATABASE_NAME, indent=4)
     data = db.table("round")
 
-    def __init__(self, rounds):
-        self.round_number = NUMBER_OF_ROUND
+    def __init__(self, round_number, rounds):
+        self.round_number = round_number
         self.rounds = rounds
-        self._timestamp_begin = datetime.now()
+        self._timestamp_begin = None
         self._timestamp_end = None
         self.round_closed = False
 
@@ -22,8 +21,15 @@ class Round:
             f"Start: {self.timestamp_begin} - End: {self.timestamp_end}"
         )
 
-    def save(self) -> int:
-        return Round.data.insert(self.__dict__)
+    def save(self):
+        round_data = {
+            "round_number": self.round_number,
+            "rounds": self.rounds,
+            "_timestamp_begin": str(self._timestamp_begin),
+            "_timestamp_end": str(self._timestamp_end),
+            "round_closed": self.round_closed,
+        }
+        self.data.insert(round_data)
 
     @property
     def timestamp_begin(self):

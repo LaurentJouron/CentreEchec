@@ -1,14 +1,12 @@
-from chesscenter.utils.bases.controllers import BaseController
-from chesscenter.controllers import home_controllers as home
-
-from chesscenter.views.tournament_views import TournamentView
-from chesscenter.models.tournament_models import Tournament
-from chesscenter.controllers.player_controllers import (
+from ..utils.bases.controllers import BaseController
+from ..models.tournament_models import Tournament
+from ..views.tournament_views import TournamentView
+from ..controllers import home_controllers as home
+from ..controllers.round_controllers import RoundController
+from ..controllers.player_controllers import (
     PlayerTournament,
     PlayerController,
 )
-from chesscenter.controllers.round_controllers import RoundFirstController
-
 
 view = TournamentView()
 
@@ -59,12 +57,15 @@ class TournamentCreationController(TournamentController):
     def __init__(self) -> None:
         self.model = Tournament
         self.player = PlayerTournament()
+        self.round = RoundController()
 
     def run(self):
         view.display_creation()
         tournament_data = view.tournament_data()
         tournament_data["players"] = self.player.player_for_tournament()
-        RoundFirstController(tournament_data["players"])
+        self.round.save_first_round(
+            tournament_data["name"], tournament_data["players"]
+        )
         tournament = self.model(**tournament_data)
         tournament.save()
         view.display_tournament_register(tournament_data["name"])

@@ -1,8 +1,8 @@
-from chesscenter.views.player_views import PlayerView
-from chesscenter.models.player_models import Player
-from chesscenter.controllers import home_controllers as home
-from chesscenter.utils.bases.controllers import BaseController
-from chesscenter.utils.constants import NUMBER_OF_PLAYERS
+from ..utils.constants import NUMBER_OF_PLAYERS
+from ..utils.bases.controllers import BaseController
+from ..models.player_models import Player
+from ..views.player_views import PlayerView
+from ..controllers import home_controllers as home
 
 view = PlayerView()
 
@@ -124,5 +124,7 @@ class PlayerTournament:
                 }
                 players.append(new_player)
                 print(f"\nThere are {len(players)} players in the list.")
-            print("The player list is complete.")
+            else:
+                print("Player not found. Please try again.")
+        print("The player list is complete.")
         return players
