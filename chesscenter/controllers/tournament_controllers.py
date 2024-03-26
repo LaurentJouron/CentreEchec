@@ -3,7 +3,11 @@ from chesscenter.controllers import home_controllers as home
 
 from chesscenter.views.tournament_views import TournamentView
 from chesscenter.models.tournament_models import Tournament
-from chesscenter.controllers.player_controllers import PlayerTournament
+from chesscenter.controllers.player_controllers import (
+    PlayerTournament,
+    PlayerController,
+)
+from chesscenter.controllers.round_controllers import RoundFirstController
 
 
 view = TournamentView()
@@ -29,6 +33,27 @@ class TournamentController(BaseController):
             elif choice == "5":
                 return home.HomeController()
 
+    def get_tournament_in_tournaments(self, tournaments):
+        for tournament in tournaments:
+            name = tournament.name
+            place = tournament.place
+            start_date = tournament.start_date
+            end_date = tournament.end_date
+            nbr_round = tournament.nbr_round
+            current_round = tournament.current_round
+            comment = tournament.comment
+            players = self.players.get_player_in_players(tournament.players)
+            print(
+                name,
+                place,
+                start_date,
+                end_date,
+                nbr_round,
+                current_round,
+                comment,
+                players,
+            )
+
 
 class TournamentCreationController(TournamentController):
     def __init__(self) -> None:
@@ -38,16 +63,9 @@ class TournamentCreationController(TournamentController):
     def run(self):
         view.display_creation()
         tournament_data = view.tournament_data()
-        tournament = self.model(
-            name=tournament_data["name"],
-            place=tournament_data["place"],
-            start_date=tournament_data["start_date"],
-            end_date=tournament_data["end_date"],
-            nbr_round=tournament_data["nbr_round"],
-            current_round=tournament_data["current_round"],
-            comment=tournament_data["comment"],
-            players=self.player.player_for_tournament(),
-        )
+        tournament_data["players"] = self.player.player_for_tournament()
+        RoundFirstController(tournament_data["players"])
+        tournament = self.model(**tournament_data)
         tournament.save()
         view.display_tournament_register(tournament_data["name"])
         return TournamentController()
@@ -56,10 +74,12 @@ class TournamentCreationController(TournamentController):
 class TournamentReadController(TournamentController):
     def __init__(self) -> None:
         self.model = Tournament
+        self.players = PlayerController()
 
     def run(self):
         view.display_list()
-        print(self.model.get_all())
+        tournaments = self.model.get_all()
+        self.get_tournament_in_tournaments(tournaments)
         return TournamentController()
 
 
@@ -91,14 +111,3 @@ class TournamentRemoveController(TournamentController):
         else:
             view._message_error(tournament_name)
         return TournamentController()
-
-
-class TournamentMatch:
-    def __init__(self) -> None:
-        self.model = Tournament
-
-    def get_tournament_players(self, tournament_name):
-        if tournament := self.model.get_by_name(tournament_name):
-            return tournament
-        view._message_error(f"Tournament '{tournament_name}' not found")
-        return None

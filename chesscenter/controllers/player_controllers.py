@@ -30,6 +30,23 @@ class PlayerController(BaseController):
             elif choice == "5":
                 return home.HomeController()
 
+    def get_player_in_players(self, players):
+        for player in players:
+            player_code = player["player_code"]
+            first_name = player["first_name"]
+            last_name = player["last_name"]
+            birthday = player["birthday"]
+            gender = player["gender"]
+            rank = player["rank"]
+            print(
+                player_code,
+                first_name,
+                last_name,
+                birthday,
+                gender,
+                rank,
+            )
+
 
 class PlayerCreationController(PlayerController):
     def __init__(self) -> None:
@@ -103,7 +120,7 @@ class PlayerTournament:
                     "last_name": player.last_name,
                     "birthday": player.birthday,
                     "gender": player.gender,
-                    "rank": 0,
+                    "rank": player.rank,
                 }
                 players.append(new_player)
                 print(f"\nThere are {len(players)} players in the list.")

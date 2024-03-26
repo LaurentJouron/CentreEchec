@@ -1,11 +1,17 @@
 from datetime import datetime
+from tinydb import TinyDB
+from chesscenter.utils.constants import NUMBER_OF_ROUND
+from chesscenter.utils.constants import DATABASE_NAME
 from .match_models import Match
 
 
 class Round:
-    def __init__(self, round_number):
-        self.round_number = round_number
-        self.matches = []
+    db = TinyDB(DATABASE_NAME, indent=4)
+    data = db.table("round")
+
+    def __init__(self, rounds):
+        self.round_number = NUMBER_OF_ROUND
+        self.rounds = rounds
         self._timestamp_begin = datetime.now()
         self._timestamp_end = None
         self.round_closed = False
@@ -15,6 +21,9 @@ class Round:
             f"Round {self.round_number}: \n"
             f"Start: {self.timestamp_begin} - End: {self.timestamp_end}"
         )
+
+    def save(self) -> int:
+        return Round.data.insert(self.__dict__)
 
     @property
     def timestamp_begin(self):
@@ -26,10 +35,10 @@ class Round:
             return self._timestamp_end.strftime("%d/%m/%Y-%H:%M")
         return ""
 
-    def add_match(self, player1, player2, score1, score2):
-        if not (0 <= score1 <= 1) or not (0 <= score2 <= 1):
+    def add_match(self, player0, player1, score0, score1):
+        if not (0 <= score0 <= 1) or not (0 <= score1 <= 1):
             raise ValueError("Scores must be between 0 et 1")
-        self.matches.append(Match(player1, player2, score1, score2))
+        self.matches.append(Match(player0, player1, score0, score1))
 
     def close_round(self):
         self._timestamp_end = datetime.now()
@@ -41,34 +50,4 @@ class Round:
 
     @property
     def len_matches_list(self):
-        return len(self.matches)
-
-    def serialize_round(self):
-        serialized_matches = [match.serialize() for match in self.matches]
-        return {
-            "round_number": self.round_number,
-            "matches": serialized_matches,
-            "timestamp_begin": self.timestamp_begin,
-            "timestamp_end": self.timestamp_end,
-            "round_closed": self.round_closed,
-        }
-
-    @classmethod
-    def deserialize_round(cls, serialized_round):
-        round_instance = cls(serialized_round["round_number"])
-        round_instance._timestamp_begin = datetime.strptime(
-            serialized_round["timestamp_begin"], "%d/%m/%Y-%H:%M"
-        )
-        round_instance._timestamp_end = (
-            datetime.strptime(
-                serialized_round["timestamp_end"], "%d/%m/%Y-%H:%M"
-            )
-            if serialized_round["timestamp_end"]
-            else None
-        )
-        round_instance.round_closed = serialized_round["round_closed"]
-        round_instance.matches = [
-            Match.deserialize(match_data)
-            for match_data in serialized_round["matches"]
-        ]
-        return round_instance
+        return len(self.rounds)
