@@ -1,4 +1,5 @@
 from ..utils.constants import DATABASE_NAME
+from datetime import datetime
 from .match_models import Match
 from datetime import datetime
 from tinydb import TinyDB
@@ -11,7 +12,7 @@ class Round:
     def __init__(self, round_number, rounds):
         self.round_number = round_number
         self.rounds = rounds
-        self._timestamp_begin = None
+        self._timestamp_begin = datetime.now()
         self._timestamp_end = None
         self.round_closed = False
 

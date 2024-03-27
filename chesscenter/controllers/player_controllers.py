@@ -108,7 +108,7 @@ class PlayerTournament:
     def __init__(self) -> None:
         self.model = Player
 
-    def player_for_tournament(self):
+    def get_for_tournament(self):
         players = []
         while len(players) < NUMBER_OF_PLAYERS:
             view.display_code()
