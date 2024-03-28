@@ -123,17 +123,21 @@ class TournamentRemoveController(TournamentController):
         return TournamentController()
 
 
-class TournamentMatch(TournamentController):
+class TournamentMatch:
     def __init__(self) -> None:
         self.model = Tournament
 
-    def get_first_round(self):
+    def get_first_match(self):
         tournament_name = view.get_name()
         if tournament := self.model.get_by_name(tournament_name):
-            for matches in tournament.get("matches", []):
+            matches = tournament.matches
+            if matches is not None:
                 for match in matches:
                     player1 = match[0]["first_name"]
                     player2 = match[1]["first_name"]
-
-                    print(f"Player 1: {player1})")
-                    print(f"Player 2: {player2})")
+                    print(f"Player 1: {player1}")
+                    print(f"Player 2: {player2}")
+            else:
+                print("No matches found for this tournament.")
+        else:
+            print("Tournament not found.")

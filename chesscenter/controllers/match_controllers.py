@@ -28,7 +28,7 @@ class MatchFirstMatch(MatchController):
         self.tournament = TM()
 
     def run(self):
-        matches = self.tournament.get_first_round()
+        matches = self.tournament.get_first_match()
         score0 = 0
         score1 = 0
         for match in matches:
