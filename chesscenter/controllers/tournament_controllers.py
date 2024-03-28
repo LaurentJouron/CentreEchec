@@ -122,7 +122,7 @@ class TournamentRemoveController(TournamentController):
         return TournamentController()
 
 
-class TournamentRound:
+class TournamentRound(TournamentController):
     def __init__(self) -> None:
         self.model = Tournament
 

@@ -17,7 +17,6 @@ class RoundController(BaseController):
             choice = view.display_menu(view.round_menu)
             if choice == "1":
                 return RoundFirstRoundController()
-
             elif choice == "5":
                 return home.HomeController()
 
