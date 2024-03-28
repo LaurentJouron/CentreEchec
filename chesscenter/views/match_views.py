@@ -7,7 +7,7 @@ class MatchView(BaseMenu):
         "2": "",
         "3": "",
         "4": "",
-        "5": "",
+        "5": "Return",
     }
 
     def display_menu(self, menu_dict):

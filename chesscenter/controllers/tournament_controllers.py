@@ -129,24 +129,10 @@ class TournamentRound:
     def get_first_round(self):
         tournament_name = view.get_name()
         if tournament := self.model.get_by_name(tournament_name):
-            # Parcours de chaque tour dans la liste des tours
             for round_matches in tournament.get("rounds", []):
-                # Parcours de chaque match dans le tour
                 for match in round_matches:
-                    # Récupération des informations sur le premier joueur du match
-                    player1_code = match[0]["player_code"]
-                    player1_first_name = match[0]["first_name"]
-                    player1_last_name = match[0]["last_name"]
+                    player1 = match[0]["first_name"]
+                    player2 = match[1]["first_name"]
 
-                    # Récupération des informations sur le deuxième joueur du match
-                    player2_code = match[1]["player_code"]
-                    player2_first_name = match[1]["first_name"]
-                    player2_last_name = match[1]["last_name"]
-
-                    # Utilisation des informations récupérées
-                    print(
-                        f"Player 1: {player1_first_name} {player1_last_name} (Code: {player1_code})"
-                    )
-                    print(
-                        f"Player 2: {player2_first_name} {player2_last_name} (Code: {player2_code})"
-                    )
+                    print(f"Player 1: {player1})")
+                    print(f"Player 2: {player2})")
