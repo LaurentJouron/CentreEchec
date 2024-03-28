@@ -1,9 +1,9 @@
-from chesscenter.views.home_views import HomeView
-from chesscenter.utils.constants import CONFIRMATION_MENU
-from chesscenter.utils.bases.controllers import BaseController
-from chesscenter.controllers.player_controllers import PlayerController
-from chesscenter.controllers.tournament_controllers import TournamentController
-from chesscenter.controllers.match_controllers import MatchController
+from ..views.home_views import HomeView
+from ..utils.constants import CONFIRMATION_MENU
+from ..utils.bases.controllers import BaseController
+from ..controllers.player_controllers import PlayerController
+from ..controllers.tournament_controllers import TournamentController
+from ..controllers.match_controllers import MatchController
 
 view = HomeView()
 
@@ -24,7 +24,7 @@ class HomeController(BaseController):
                 return MatchController()
 
             elif choice == "4":
-                print("match menu")
+                print("round menu")
 
             elif choice == "5":
                 return ExitController()

@@ -71,9 +71,10 @@ class TournamentCreationController(TournamentController):
         view.display_creation()
         tournament_data = view.tournament_data()
         tournament_data["players"] = self.player.get_for_tournament()
-        first_round_matches = self.first_round(tournament_data["players"])
+        tournament_data["current_round"] = 1
+        first_match = self.first_match(tournament_data["players"])
         tournament = self.model(**tournament_data)
-        tournament.rounds.append(first_round_matches)
+        tournament.matches.append(first_match)
 
         tournament.save()
         view.display_tournament_register(tournament_data["name"])
@@ -122,15 +123,15 @@ class TournamentRemoveController(TournamentController):
         return TournamentController()
 
 
-class TournamentRound(TournamentController):
+class TournamentMatch(TournamentController):
     def __init__(self) -> None:
         self.model = Tournament
 
     def get_first_round(self):
         tournament_name = view.get_name()
         if tournament := self.model.get_by_name(tournament_name):
-            for round_matches in tournament.get("rounds", []):
-                for match in round_matches:
+            for matches in tournament.get("matches", []):
+                for match in matches:
                     player1 = match[0]["first_name"]
                     player2 = match[1]["first_name"]
 

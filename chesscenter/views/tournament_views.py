@@ -1,7 +1,7 @@
-from chesscenter.utils.bases.menus import BaseMenu
-from chesscenter.utils.bases.date import BaseDate
+from ..utils.bases.menus import BaseMenu
+from ..utils.bases.date import BaseDate
 
-from chesscenter.utils.constants import (
+from ..utils.constants import (
     NUMBER_OF_ROUND,
     CONFIRMATION_MENU,
     DEFAULT_VALUE,
@@ -30,7 +30,6 @@ class TournamentView(BaseMenu, BaseDate):
         end_date = self.convert(end)
         self.display_number_of_rounds()
         nbr_round = self.valid_int_value(DEFAULT_VALUE, f"{NUMBER_OF_ROUND}")
-        current_round = self._get_int("current round: ")
         comment = self._get_string("Enter a comment if needed: ")
         return {
             "name": name,
@@ -38,7 +37,6 @@ class TournamentView(BaseMenu, BaseDate):
             "start_date": start_date,
             "end_date": end_date,
             "nbr_round": int(nbr_round),
-            "current_round": current_round,
             "comment": comment,
         }
 

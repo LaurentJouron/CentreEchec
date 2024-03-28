@@ -1,7 +1,8 @@
-from chesscenter.utils.bases.menus import BaseMenu
+from ..utils.bases.menus import BaseMenu
+from ..utils.bases.date import BaseDate
 
 
-class MatchView(BaseMenu):
+class MatchView(BaseMenu, BaseDate):
     match_menu: dict = {
         "1": "first match",
         "2": "",

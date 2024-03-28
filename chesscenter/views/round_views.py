@@ -4,7 +4,7 @@ from ..utils.bases.date import BaseDate
 
 class RoundView(BaseMenu, BaseDate):
     round_menu: dict = {
-        "1": "first round",
+        "1": "",
         "2": "",
         "3": "",
         "4": "",

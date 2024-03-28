@@ -17,7 +17,7 @@ class Tournament:
         self.current_round: int = kwargs["current_round"]
         self.comment: str = kwargs["comment"]
         self.players: list = kwargs["players"]
-        self.rounds: list = []
+        self.matches: list = []
 
     def __repr__(self):
         return (
@@ -29,7 +29,7 @@ class Tournament:
             f"Current round: {self.current_round}\n"
             f"Comment: {self.comment}\n"
             f"players: {self.players}\n"
-            f"rounds: {self.rounds}\n"
+            f"matches: {self.matches}\n"
         )
 
     def __str__(self):
@@ -42,7 +42,7 @@ class Tournament:
             f"Current round: {self.current_round}\n"
             f"Comment: {self.comment}\n"
             f"players: {self.players}\n"
-            f"rounds: {self.rounds}\n"
+            f"matches: {self.matches}\n"
         )
 
     @property
@@ -91,7 +91,7 @@ class Tournament:
         current_round = serialized_tournament["current_round"]
         comment = serialized_tournament["comment"]
         players = serialized_tournament["players"]
-        rounds = serialized_tournament["rounds"]
+        matches = serialized_tournament["matches"]
         return Tournament(
             name,
             place,
@@ -101,7 +101,7 @@ class Tournament:
             current_round,
             comment,
             players,
-            rounds,
+            matches,
         )
 
     def get_players_list(self):

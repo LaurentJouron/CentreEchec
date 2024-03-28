@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from chesscenter.utils.bases.menus import BaseMenu
-from chesscenter.utils.bases.date import BaseDate
+from ..utils.bases.menus import BaseMenu
+from ..utils.bases.date import BaseDate
 
 
 class PlayerView(BaseMenu, BaseDate):

@@ -1,7 +1,9 @@
-from chesscenter.views.match_views import MatchView
-from chesscenter.models.match_models import Match
-from chesscenter.controllers import home_controllers as home
-from chesscenter.utils.bases.controllers import BaseController
+from ..views.match_views import MatchView
+from ..models.match_models import Match
+from ..controllers.tournament_controllers import TournamentMatch as TM
+from ..controllers import home_controllers as home
+from ..utils.bases.controllers import BaseController
+
 
 view = MatchView()
 
@@ -15,12 +17,18 @@ class MatchController(BaseController):
         while True:
             choice = view.display_menu(view.match_menu)
             if choice == "1":
-                return ...
+                return MatchFirstMatch()
 
             elif choice == "5":
                 return home.HomeController()
 
-    def get_match_in_matches(self, matches):
+
+class MatchFirstMatch(MatchController):
+    def __init__(self):
+        self.tournament = TM()
+
+    def run(self):
+        matches = self.tournament.get_first_round()
         score0 = 0
         score1 = 0
         for match in matches:
