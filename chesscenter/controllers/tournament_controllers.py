@@ -13,6 +13,9 @@ view = TournamentView()
 
 
 class TournamentController(BaseController):
+    def __init__(self) -> None:
+        self.model = Tournament
+
     def run(self):
         view.display_reception()
         while True:
@@ -42,6 +45,7 @@ class TournamentController(BaseController):
             current_round = tournament.current_round
             comment = tournament.comment
             players = self.players.get_player_in_players(tournament.players)
+            matches = self.get_first_match(tournament.matches)
             print(
                 name,
                 place,
@@ -51,14 +55,33 @@ class TournamentController(BaseController):
                 current_round,
                 comment,
                 players,
+                matches,
             )
 
-    def first_round(self, players):
+    def first_match(self, players):
         selected_players = random.sample(players, NUMBER_OF_PLAYERS)
         return [
             (selected_players[i], selected_players[i + 1])
             for i in range(0, len(selected_players), 2)
         ]
+
+    def get_first_match(self, matches):
+        if matches is not None:
+            matches_list: list = []
+            for match in matches:
+                player1 = match[0]["first_name"]
+                player2 = match[1]["first_name"]
+                matches_list.append((player1, player2))
+                print(f"{player1} VS {player2}\n")
+            return matches_list
+        else:
+            print("No matches found for this tournament.")
+
+    def get_matches(self):
+        tournament_name = view.get_name()
+        tournament = self.model.get_by_name(tournament_name)
+        matches = tournament.matches
+        return self.get_first_match(matches)
 
 
 class TournamentCreationController(TournamentController):
@@ -71,10 +94,9 @@ class TournamentCreationController(TournamentController):
         tournament_data = view.tournament_data()
         tournament_data["players"] = self.player.get_for_tournament()
         tournament_data["current_round"] = 1
-        first_match = self.first_match(tournament_data["players"])
+        first_round_players = tournament_data["players"]
+        tournament_data["matches"] = self.first_match(first_round_players)
         tournament = self.model(**tournament_data)
-        tournament.matches.append(first_match)
-
         tournament.save()
         view.display_tournament_register(tournament_data["name"])
         return TournamentController()
@@ -120,23 +142,3 @@ class TournamentRemoveController(TournamentController):
         else:
             view._message_error(tournament_name)
         return TournamentController()
-
-
-class TournamentMatch:
-    def __init__(self) -> None:
-        self.model = Tournament
-
-    def get_first_match(self):
-        tournament_name = view.get_name()
-        if tournament := self.model.get_by_name(tournament_name):
-            matches = tournament.matches
-            if matches is not None:
-                for match in matches:
-                    player1 = match[0]["first_name"]
-                    player2 = match[1]["first_name"]
-                    print(f"Player 1: {player1}")
-                    print(f"Player 2: {player2}")
-            else:
-                print("No matches found for this tournament.")
-        else:
-            print("Tournament not found.")

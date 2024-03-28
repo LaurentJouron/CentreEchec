@@ -1,6 +1,6 @@
 from ..views.match_views import MatchView
 from ..models.match_models import Match
-from ..controllers.tournament_controllers import TournamentMatch as TM
+from ..controllers.tournament_controllers import TournamentController
 from ..controllers import home_controllers as home
 from ..utils.bases.controllers import BaseController
 
@@ -25,13 +25,14 @@ class MatchController(BaseController):
 
 class MatchFirstMatch(MatchController):
     def __init__(self):
-        self.tournament = TM()
+        self.tournament = TournamentController()
+        self.model = Match
 
     def run(self):
-        matches = self.tournament.get_first_match()
-        score0 = 0
+        matches = self.tournament.get_matches()
         score1 = 0
+        score2 = 0
         for match in matches:
-            player0 = match["player_code"][0]
-            player1 = match["player_code"][1]
-            print(player0, player1, score0, score1)
+            player1 = match[0]
+            player2 = match[1]
+            print(player1, player2, score1, score2)

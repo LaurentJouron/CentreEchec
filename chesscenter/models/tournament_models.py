@@ -17,7 +17,7 @@ class Tournament:
         self.current_round: int = kwargs["current_round"]
         self.comment: str = kwargs["comment"]
         self.players: list = kwargs["players"]
-        self.matches: list = []
+        self.matches: list = kwargs["matches"]
 
     def __repr__(self):
         return (
