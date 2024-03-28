@@ -55,11 +55,10 @@ class TournamentController(BaseController):
 
     def first_round(self, players):
         selected_players = random.sample(players, NUMBER_OF_PLAYERS)
-        matches = [
+        return [
             (selected_players[i], selected_players[i + 1])
             for i in range(0, len(selected_players), 2)
         ]
-        return matches
 
 
 class TournamentCreationController(TournamentController):
